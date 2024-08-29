@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding the CSS Box Model</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li><a href="Box Model.html">Box Model</a></li>
+                <li><a href="flexbox.html">Flexbox</a></li>
+                <li><a href="font.html">Font</a></li>
+                <li><a href="grid.html">Grid</a></li>
+                <li><a href="Icon.html">Icon</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Understanding the CSS Box Model</h1>
+
+        <div class="explanation">
+            <h2>What is the CSS Box Model?</h2>
+            <p>The CSS Box Model is a fundamental concept that defines how elements on a webpage are structured and how their size and space are determined. It consists of four main components:</p>
+            <ul>
+                <li><strong>Content</strong> - The actual content of the box, such as text or images.</li>
+                <li><strong>Padding</strong> - The space between the content and the border.</li>
+                <li><strong>Border</strong> - The line surrounding the padding and content.</li>
+                <li><strong>Margin</strong> - The space outside the border, separating the element from other elements.</li>
+            </ul>
+        </div>
+
+        <div class="explanation">
+            <h2>Box Model Structure</h2>
+            <p>Here is a visual representation of the CSS Box Model:</p>
+            <div class="box-example">
+                The Box Model
+            </div>
+
+            <div class="definition">
+                <strong>Content:</strong> This is where your text, images, or other content lives. In the example above, "The Box Model" is the content.
+            </div>
+
+            <div class="definition">
+                <strong>Padding:</strong> The space between the content and the border. In the example, the padding is <code>20px</code>, creating space around the content.
+            </div>
+
+            <div class="definition">
+                <strong>Border:</strong> The line surrounding the padding and content. Here, the border is <code>5px solid</code> with a color of <code>#00796b</code>.
+            </div>
+
+            <div class="definition">
+                <strong>Margin:</strong> The space outside the border, separating the box from other elements. The margin in this example is <code>30px</code>.
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>Code Example</h2>
+            <p>Let's take a look at the code that creates the above example:</p>
+            <div class="code-example">
+                <pre><code>.box-example {
+    padding: 20px;
+    border: 5px solid #00796b;
+    margin: 30px;
+    background-color: #e0f7fa;
+    color: #00796b;
+    text-align: center;
+    font-weight: bold;
+}</code></pre>
+            </div>
+            <p>This code defines a box with padding, a border, and a margin, illustrating how these components work together to create the box model.</p>
+        </div>
+
+        <div class="explanation">
+            <h2>Additional Examples</h2>
+            <p>Here are a few more examples to deepen your understanding:</p>
+
+            <h3>Example with Different Padding</h3>
+            <div class="box-example" style="padding: 40px;">
+                Increased Padding (40px)
+            </div>
+            <div class="code-example">
+                <pre><code>.box-example {
+    padding: 40px; /* Increased padding */
+    border: 5px solid #00796b;
+    margin: 30px;
+    background-color: #e0f7fa;
+    color: #00796b;
+    text-align: center;
+    font-weight: bold;
+}</code></pre>
+            </div>
+
+            <h3>Example with Different Margin</h3>
+            <div class="box-example" style="margin: 60px;">
+                Increased Margin (60px)
+            </div>
+            <div class="code-example">
+                <pre><code>.box-example {
+    padding: 20px;
+    border: 5px solid #00796b;
+    margin: 60px; /* Increased margin */
+    background-color: #e0f7fa;
+    color: #00796b;
+    text-align: center;
+    font-weight: bold;
+}</code></pre>
+            </div>
+
+            <h3>Example with Different Border</h3>
+            <div class="box-example" style="border: 10px dashed #d32f2f;">
+                Different Border (10px dashed)
+            </div>
+            <div class="code-example">
+                <pre><code>.box-example {
+    padding: 20px;
+    border: 10px dashed #d32f2f; /* Different border style and color */
+    margin: 30px;
+    background-color: #e0f7fa;
+    color: #00796b;
+    text-align: center;
+    font-weight: bold;
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Orange Coding School
+    </footer>
+
+</body>
+</html>

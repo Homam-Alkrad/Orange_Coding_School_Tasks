@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding CSS Flexbox</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li><a href="Box Model.html">Box Model</a></li>
+                <li><a href="flexbox.html">Flexbox</a></li>
+                <li><a href="font.html">Font</a></li>
+                <li><a href="grid.html">Grid</a></li>
+                <li><a href="Icon.html">Icon</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Understanding CSS Flexbox</h1>
+
+        <div class="explanation">
+            <h2>What is Flexbox?</h2>
+            <p>Flexbox is a powerful layout module in CSS that allows you to design complex and flexible layouts with ease. Unlike traditional layouts, Flexbox makes it simple to align items vertically and horizontally, distribute space between items, and manage the overall structure of your design.</p>
+        </div>
+
+        <div class="explanation">
+            <h2>Key Concepts of Flexbox</h2>
+            <p>The Flexbox layout is made up of two main components:</p>
+            <ul>
+                <li><strong>Flex Container</strong> - The parent element that contains flex items. It is defined by setting <code>display: flex;</code>.</li>
+                <li><strong>Flex Items</strong> - The child elements that are placed inside the flex container.</li>
+            </ul>
+        </div>
+
+        <div class="explanation">
+            <h2>Creating a Flex Container</h2>
+            <p>To create a flex container, simply set the <code>display</code> property of a container element to <code>flex</code>. This will enable Flexbox for that element, and all direct children of this container will become flex items.</p>
+            <div class="code-example">
+                <pre><code>.flex-container {
+    display: flex;
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>Flex Direction (Row & Column)</h2>
+            <p>The <code>flex-direction</code> property defines the direction in which the flex items are placed in the flex container. The default value is <code>row</code>, meaning the items are placed horizontally from left to right. You can also set it to <code>column</code> to place the items vertically.</p>
+
+            <h3>Row Direction (Default)</h3>
+            <div class="flex-container" style="flex-direction: row;">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+
+            <div class="code-example">
+                <pre><code>.flex-container {
+    display: flex;
+    flex-direction: row; /* Items are placed in a row */
+}</code></pre>
+            </div>
+
+            <h3>Column Direction</h3>
+            <div class="flex-container" style="flex-direction: column;">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+
+            <div class="code-example">
+                <pre><code>.flex-container {
+    display: flex;
+    flex-direction: column; /* Items are placed in a column */
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>Flex Wrap</h2>
+            <p>By default, flex items will try to fit onto one line. The <code>flex-wrap</code> property controls whether the flex container is single-line or multi-line, and the direction the new lines are stacked in.</p>
+            <p>Here are the values for <code>flex-wrap</code>:</p>
+            <ul>
+                <li><code>nowrap</code> - All flex items will be on one line (default).</li>
+                <li><code>wrap</code> - Flex items will wrap onto multiple lines, from top to bottom.</li>
+                <li><code>wrap-reverse</code> - Flex items will wrap onto multiple lines, from bottom to top.</li>
+            </ul>
+
+            <h3>Flex Wrap Example</h3>
+            <div class="flex-container" style="flex-wrap: wrap;">
+                <div class="flex-item" style="flex-basis: 150px;">Item 1</div>
+                <div class="flex-item" style="flex-basis: 150px;">Item 2</div>
+                <div class="flex-item" style="flex-basis: 150px;">Item 3</div>
+                <div class="flex-item" style="flex-basis: 150px;">Item 4</div>
+                <div class="flex-item" style="flex-basis: 150px;">Item 5</div>
+                <div class="flex-item" style="flex-basis: 150px;">Item 6</div>
+            </div>
+
+            <div class="code-example">
+                <pre><code>.flex-container {
+    display: flex;
+    flex-wrap: wrap; /* Items wrap onto multiple lines */
+}
+
+.flex-item {
+    flex-basis: 150px; /* Each item takes up 150px of space */
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>Justify Content</h2>
+            <p>The <code>justify-content</code> property aligns flex items along the main axis (horizontally by default). It is useful for controlling the distribution of space between and around flex items.</p>
+            <p>Here are some common values:</p>
+            <ul>
+                <li><code>flex-start</code> - Items are packed at the start of the container.</li>
+                <li><code>flex-end</code> - Items are packed at the end of the container.</li>
+                <li><code>center</code> - Items are centered along the main axis.</li>
+                <li><code>space-between</code> - Items are evenly distributed with space between them.</li>
+                <li><code>space-around</code> - Items are evenly distributed with space around them.</li>
+            </ul>
+
+            <div class="flex-container" style="justify-content: space-between;">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+
+            <div class="code-example">
+                <pre><code>.flex-container {
+    display: flex;
+    justify-content: space-between; /* Items are spaced evenly with space between */
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>Align Items</h2>
+            <p>The <code>align-items</code> property aligns flex items along the cross axis (vertically by default). This property is useful for controlling the alignment of items within the flex container.</p>
+            <p>Here are some common values:</p>
+            <ul>
+                <li><code>flex-start</code> - Items are aligned at the start of the cross axis.</li>
+                <li><code>flex-end</code> - Items are aligned at the end of the cross axis.</li>
+                <li><code>center</code> - Items are centered along the cross axis.</li>
+                <li><code>baseline</code> - Items are aligned based on their baselines.</li>
+                <li><code>stretch</code> - Items are stretched to fill the container (default behavior).</li>
+            </ul>
+
+            <div class="flex-container" style="align-items: center; height: 200px;">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+
+            <div class="code-example">
+                <pre><code>.flex-container {
+    display: flex;
+    align-items: center; /* Items are centered vertically */
+    height: 200px;
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>Align Content</h2>
+            <p>The <code>align-content</code> property is used when there are multiple lines of flex items, and it aligns the lines themselves along the cross axis. It only affects the container if there is extra space in the cross axis.</p>
+            <p>Here are some common values:</p>
+            <ul>
+                <li><code>flex-start</code> - Lines are packed at the start of the container.</li>
+                <li><code>flex-end</code> - Lines are packed at the end of the container.</li>
+                <li><code>center</code> - Lines are centered in the container.</li>
+                <li><code>space-between</code> - Lines are evenly distributed with space between them.</li>
+                <li><code>space-around</code> - Lines are evenly distributed with space around them.</li>
+                <li><code>stretch</code> - Lines stretch to take up the remaining space (default behavior).</li>
+            </ul>
+
+            <div class="flex-container" style="flex-wrap: wrap; align-content: space-around; height: 300px;">
+                <div class="flex-item" style="flex-basis: 150px;">Item 1</div>
+                <div class="flex-item" style="flex-basis: 150px;">Item 2</div>
+                <div class="flex-item" style="flex-basis: 150px;">Item 3</div>
+                <div class="flex-item" style="flex-basis: 150px;">Item 4</div>
+                <div class="flex-item" style="flex-basis: 150px;">Item 5</div>
+                <div class="flex-item" style="flex-basis: 150px;">Item 6</div>
+            </div>
+
+            <div class="code-example">
+                <pre><code>.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around; /* Lines are spaced around within the container */
+    height: 300px;
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>Flex Grow</h2>
+            <p>The <code>flex-grow</code> property allows a flex item to grow to fill the available space within the flex container. The default value is <code>0</code>, meaning the item will not grow to fill the space.</p>
+            <div class="flex-container">
+                <div class="flex-item" style="flex-grow: 1;">Item 1</div>
+                <div class="flex-item" style="flex-grow: 2;">Item 2 (grows more)</div>
+                <div class="flex-item" style="flex-grow: 1;">Item 3</div>
+            </div>
+
+            <div class="code-example">
+                <pre><code>.flex-item {
+    flex-grow: 1; /* The item will grow to fill the space */
+}
+
+.flex-item:nth-child(2) {
+    flex-grow: 2; /* This item grows twice as much */
+}</code></pre>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2024 Orange Coding School
+    </footer>
+
+</body>
+</html>

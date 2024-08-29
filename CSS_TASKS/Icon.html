@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Font Awesome Icons</title>
+    <!-- Link to Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li><a href="Box Model.html">Box Model</a></li>
+                <li><a href="flexbox.html">Flexbox</a></li>
+                <li><a href="font.html">Font</a></li>
+                <li><a href="grid.html">Grid</a></li>
+                <li><a href="Icon.html">Icon</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Using Font Awesome Icons</h1>
+
+        <!-- Section 1: Introduction -->
+        <div class="section">
+            <h2>1. What is Font Awesome?</h2>
+            <p>Font Awesome is a popular icon toolkit that provides a vast collection of vector icons and social logos that you can use in your web projects. It is widely used for its simplicity and the extensive range of icons available.</p>
+        </div>
+
+        <!-- Section 2: How to Include Font Awesome -->
+        <div class="section">
+            <h2>2. How to Include Font Awesome in Your Project</h2>
+            <p>To use Font Awesome icons, you need to include the Font Awesome CSS file in your HTML. You can do this by linking to a CDN, as shown below:</p>
+            <div class="code-example">
+                <pre><code>&lt;!-- Link to Font Awesome --&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"&gt;</code></pre>
+            </div>
+            <p>Once included, you can easily add any Font Awesome icon to your page using the appropriate classes.</p>
+        </div>
+
+        <!-- Section 3: Basic Icon Usage -->
+        <div class="section">
+            <h2>3. Basic Icon Usage</h2>
+            <p>To add an icon, use the <code>&lt;i&gt;</code> or <code>&lt;span&gt;</code> element with the appropriate Font Awesome classes. The first class is always <code>fas</code> (Font Awesome Solid), and the second class specifies the icon you want to use.</p>
+            <div class="icon-example">
+                <i class="fas fa-home icon"></i>
+                <i class="fas fa-user icon"></i>
+                <i class="fas fa-envelope icon"></i>
+            </div>
+            <div class="code-example">
+                <pre><code>&lt;i class="fas fa-home"&gt;&lt;/i&gt;
+&lt;i class="fas fa-user"&gt;&lt;/i&gt;
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- Section 4: Icon Sizes -->
+        <div class="section">
+            <h2>4. Icon Sizes</h2>
+            <p>Font Awesome allows you to scale icons to different sizes using classes like <code>fa-xs</code>, <code>fa-sm</code>, <code>fa-lg</code>, <code>fa-2x</code>, <code>fa-3x</code>, and more.</p>
+            <div class="icon-example">
+                <i class="fas fa-home fa-xs icon"></i>
+                <i class="fas fa-home fa-sm icon"></i>
+                <i class="fas fa-home fa-lg icon"></i>
+                <i class="fas fa-home fa-2x icon"></i>
+                <i class="fas fa-home fa-3x icon"></i>
+            </div>
+            <div class="code-example">
+                <pre><code>&lt;i class="fas fa-home fa-xs"&gt;&lt;/i&gt;
+&lt;i class="fas fa-home fa-sm"&gt;&lt;/i&gt;
+&lt;i class="fas fa-home fa-lg"&gt;&lt;/i&gt;
+&lt;i class="fas fa-home fa-2x"&gt;&lt;/i&gt;
+&lt;i class="fas fa-home fa-3x"&gt;&lt;/i&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- Section 5: Fixed-Width Icons -->
+        <div class="section">
+            <h2>5. Fixed-Width Icons</h2>
+            <p>Fixed-width icons are useful when you want your icons to align neatly in a list or grid. You can achieve this by adding the <code>fa-fw</code> class.</p>
+            <div class="icon-example" style="text-align: left;">
+                <i class="fas fa-home fa-fw icon"></i> Home<br>
+                <i class="fas fa-user fa-fw icon"></i> User<br>
+                <i class="fas fa-envelope fa-fw icon"></i> Envelope
+            </div>
+            <div class="code-example">
+                <pre><code>&lt;i class="fas fa-home fa-fw"&gt;&lt;/i&gt; Home&lt;br&gt;
+&lt;i class="fas fa-user fa-fw"&gt;&lt;/i&gt; User&lt;br&gt;
+&lt;i class="fas fa-envelope fa-fw"&gt;&lt;/i&gt; Envelope</code></pre>
+            </div>
+        </div>
+
+        <!-- Section 6: List Icons -->
+        <div class="section">
+            <h2>6. List Icons</h2>
+            <p>You can use Font Awesome icons as bullets in lists by using the <code>fa-li</code> class inside a <code>&lt;ul&gt;</code> element with the <code>fa-ul</code> class.</p>
+            <div class="icon-example" style="text-align: left;">
+                <ul class="fa-ul">
+                    <li><i class="fas fa-check fa-li"></i> List item 1</li>
+                    <li><i class="fas fa-check fa-li"></i> List item 2</li>
+                    <li><i class="fas fa-check fa-li"></i> List item 3</li>
+                </ul>
+            </div>
+            <div class="code-example">
+                <pre><code>&lt;ul class="fa-ul"&gt;
+    &lt;li&gt;&lt;i class="fas fa-check fa-li"&gt;&lt;/i&gt; List item 1&lt;/li&gt;
+    &lt;li&gt;&lt;i class="fas fa-check fa-li"&gt;&lt;/i&gt; List item 2&lt;/li&gt;
+    &lt;li&gt;&lt;i class="fas fa-check fa-li"&gt;&lt;/i&gt; List item 3&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- Section 7: Spinning Icons -->
+        <div class="section">
+            <h2>7. Spinning Icons</h2>
+            <p>Font Awesome provides classes to animate icons. For example, you can make an icon spin continuously by adding the <code>fa-spin</code> class.</p>
+            <div class="icon-example">
+                <i class="fas fa-sync fa-spin icon"></i>
+                <i class="fas fa-cog fa-spin icon"></i>
+                <i class="fas fa-spinner fa-spin icon"></i>
+            </div>
+            <div class="code-example">
+                <pre><code>&lt;i class="fas fa-sync fa-spin"&gt;&lt;/i&gt;
+&lt;i class="fas fa-cog fa-spin"&gt;&lt;/i&gt;
+&lt;i class="fas fa-spinner fa-spin"&gt;&lt;/i&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- Section 8: Bordered and Pulled Icons -->
+        <div class="section">
+            <h2>8. Bordered and Pulled Icons</h2>
+            <p>You can add a border to an icon using the <code>fa-border</code> class. You can also "pull" icons to the left or right using <code>fa-pull-left</code> and <code>fa-pull-right</code> classes.</p>
+            <div class="icon-example">
+                <i class="fas fa-home fa-border icon"></i>
+                <i class="fas fa-home fa-pull-left icon"></i>
+                <i class="fas fa-home fa-pull-right icon"></i>
+            </div>
+            <div class="code-example">
+                <pre><code>&lt;i class="fas fa-home fa-border"&gt;&lt;/i&gt;
+&lt;i class="fas fa-home fa-pull-left"&gt;&lt;/i&gt;
+&lt;i class="fas fa-home fa-pull-right"&gt;&lt;/i&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- Section 9: Rotating and Flipping Icons -->
+        <div class="section">
+            <h2>9. Rotating and Flipping Icons</h2>
+            <p>Font Awesome allows you to rotate or flip icons using classes like <code>fa-rotate-90</code>, <code>fa-rotate-180</code>, <code>fa-rotate-270</code>, <code>fa-flip-horizontal</code>, and <code>fa-flip-vertical</code>.</p>
+            <div class="icon-example">
+                <i class="fas fa-arrow-right fa-rotate-90 icon"></i>
+                <i class="fas fa-arrow-right fa-rotate-180 icon"></i>
+                <i class="fas fa-arrow-right fa-rotate-270 icon"></i>
+                <i class="fas fa-arrow-right fa-flip-horizontal icon"></i>
+                <i class="fas fa-arrow-right fa-flip-vertical icon"></i>
+            </div>
+            <div class="code-example">
+                <pre><code>&lt;i class="fas fa-arrow-right fa-rotate-90"&gt;&lt;/i&gt;
+&lt;i class="fas fa-arrow-right fa-rotate-180"&gt;&lt;/i&gt;
+&lt;i class="fas fa-arrow-right fa-rotate-270"&gt;&lt;/i&gt;
+&lt;i class="fas fa-arrow-right fa-flip-horizontal"&gt;&lt;/i&gt;
+&lt;i class="fas fa-arrow-right fa-flip-vertical"&gt;&lt;/i&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- Section 10: Stacked Icons -->
+        <div class="section">
+            <h2>10. Stacked Icons</h2>
+            <p>Font Awesome allows you to stack icons by combining them together. This is done using the <code>fa-stack</code> class with two icons: one for the background and one for the foreground.</p>
+            <div class="icon-example">
+                <span class="fa-stack fa-2x">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-flag fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="fa-stack fa-2x">
+                    <i class="fas fa-square fa-stack-2x"></i>
+                    <i class="fas fa-terminal fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="fa-stack fa-2x">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-check fa-stack-1x fa-inverse"></i>
+                </span>
+            </div>
+            <div class="code-example">
+                <pre><code>&lt;span class="fa-stack fa-2x"&gt;
+    &lt;i class="fas fa-circle fa-stack-2x"&gt;&lt;/i&gt;
+    &lt;i class="fas fa-flag fa-stack-1x fa-inverse"&gt;&lt;/i&gt;
+&lt;/span&gt;
+&lt;span class="fa-stack fa-2x"&gt;
+    &lt;i class="fas fa-square fa-stack-2x"&gt;&lt;/i&gt;
+    &lt;i class="fas fa-terminal fa-stack-1x fa-inverse"&gt;&lt;/i&gt;
+&lt;/span&gt;
+&lt;span class="fa-stack fa-2x"&gt;
+    &lt;i class="fas fa-circle fa-stack-2x"&gt;&lt;/i&gt;
+    &lt;i class="fas fa-check fa-stack-1x fa-inverse"&gt;&lt;/i&gt;
+&lt;/span&gt;</code></pre>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2024 Orange Coding School
+    </footer>
+</body>
+</html>

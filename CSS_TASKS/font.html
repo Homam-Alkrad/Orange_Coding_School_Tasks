@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding CSS Fonts</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li><a href="Box Model.html">Box Model</a></li>
+                <li><a href="flexbox.html">Flexbox</a></li>
+                <li><a href="font.html">Font</a></li>
+                <li><a href="grid.html">Grid</a></li>
+                <li><a href="Icon.html">Icon</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Understanding CSS Fonts</h1>
+
+        <div class="explanation">
+            <h2>What Are CSS Fonts?</h2>
+            <p>CSS fonts allow you to style text on a webpage. By using different font properties, you can control the appearance of your text, including the font type, size, weight, and more. Let's explore the key font properties in CSS:</p>
+            <ul>
+                <li><strong>font-family</strong> - Specifies the typeface used for the text.</li>
+                <li><strong>font-size</strong> - Defines the size of the text.</li>
+                <li><strong>font-weight</strong> - Sets the thickness of the font.</li>
+                <li><strong>font-style</strong> - Defines the style of the font (e.g., normal, italic).</li>
+                <li><strong>line-height</strong> - Controls the space between lines of text.</li>
+                <li><strong>text-align</strong> - Aligns the text within its container.</li>
+            </ul>
+        </div>
+
+        <div class="explanation">
+            <h2>Font Family</h2>
+            <p>The <code>font-family</code> property specifies the typeface for the text. You can list multiple font families as fallbacks, in case the preferred one is unavailable.</p>
+            <div class="example" style="font-family: 'Georgia', serif;">
+                This text is styled with the "Georgia" font.
+            </div>
+
+            <div class="code-example">
+                <pre><code>p {
+    font-family: 'Georgia', serif;
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>Font Size</h2>
+            <p>The <code>font-size</code> property sets the size of the text. It can be specified in various units such as pixels (<code>px</code>), ems (<code>em</code>), or percentages (<code>%</code>).</p>
+            <div class="example" style="font-size: 24px;">
+                This text has a font size of 24px.
+            </div>
+
+            <div class="code-example">
+                <pre><code>p {
+    font-size: 24px;
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>Font Weight</h2>
+            <p>The <code>font-weight</code> property controls the thickness of the text. Common values are <code>normal</code> (400) and <code>bold</code> (700), but you can specify any value from 100 to 900.</p>
+            <div class="example" style="font-weight: bold;">
+                This text is bold (font-weight: bold).
+            </div>
+
+            <div class="code-example">
+                <pre><code>p {
+    font-weight: bold;
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>Font Style</h2>
+            <p>The <code>font-style</code> property is used to apply a normal, italic, or oblique style to the text.</p>
+            <div class="example" style="font-style: italic;">
+                This text is italic (font-style: italic).
+            </div>
+
+            <div class="code-example">
+                <pre><code>p {
+    font-style: italic;
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>Line Height</h2>
+            <p>The <code>line-height</code> property controls the space between lines of text. It can be set using unitless numbers, percentages, or any length unit.</p>
+            <div class="example" style="line-height: 1.8;">
+                This text has a line height of 1.8.
+                <br>This creates more space between lines of text.
+            </div>
+
+            <div class="code-example">
+                <pre><code>p {
+    line-height: 1.8;
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>Text Align</h2>
+            <p>The <code>text-align</code> property sets the alignment of text within its container. Common values are <code>left</code>, <code>right</code>, <code>center</code>, and <code>justify</code>.</p>
+            <div class="example" style="text-align: center;">
+                This text is centered (text-align: center).
+            </div>
+
+            <div class="code-example">
+                <pre><code>p {
+    text-align: center;
+}</code></pre>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2024 Orange Coding School
+    </footer>
+
+</body>
+</html>

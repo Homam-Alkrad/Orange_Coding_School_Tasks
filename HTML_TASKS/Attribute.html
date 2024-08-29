@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>HTML Attributes Example</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .left-panel {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+            overflow-y: auto;
+        }
+
+        .right-panel {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            border-left: 2px solid #ddd;
+            overflow-y: auto;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+            input[disabled] {
+                background-color: #e9ecef;
+                cursor: not-allowed;
+            }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+            .navbar a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 20px;
+                text-decoration: none;
+            }
+
+                .navbar a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="Attribute.html">Attribute</a>
+        <a href="InputFiled.html">InputFiled</a>
+        <a href="Table&Colspan.html">Table&Colspan</a>
+    </div>
+    <div class="container">
+        <div class="left-panel">
+            <h2>HTML Attributes in Action</h2>
+
+            <label for="required-input">Required (required):</label>
+            <input type="text" id="required-input" name="required-input" placeholder="This field is required" required>
+
+            <label for="placeholder-input">Placeholder (placeholder):</label>
+            <input type="text" id="placeholder-input" name="placeholder-input" placeholder="Enter your text here">
+
+            <label for="value-input">Value (value):</label>
+            <input type="text" id="value-input" name="value-input" value="Default Value">
+
+            <label for="readonly-input">Readonly (readonly):</label>
+            <input type="text" id="readonly-input" name="readonly-input" value="Cannot change this" readonly>
+
+            <label for="disabled-input">Disabled (disabled):</label>
+            <input type="text" id="disabled-input" name="disabled-input" value="Disabled Field" disabled>
+
+            <label for="autofocus-input">Autofocus (autofocus):</label>
+            <input type="text" id="autofocus-input" name="autofocus-input" placeholder="This field gets focus automatically" autofocus>
+
+            <label for="minlength-input">Minlength (minlength):</label>
+            <input type="text" id="minlength-input" name="minlength-input" minlength="5" placeholder="Min length is 5 characters">
+
+            <label for="maxlength-input">Maxlength (maxlength):</label>
+            <input type="text" id="maxlength-input" name="maxlength-input" maxlength="10" placeholder="Max length is 10 characters">
+
+            <h2>Form Example with action and method</h2>
+            <form action="/submit-form" method="post">
+                <label for="name-input">Name (name):</label>
+                <input type="text" id="name-input" name="username" placeholder="Enter your name">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <div class="right-panel">
+            <h2>HTML Attribute Descriptions</h2>
+
+            <p><strong>Required (required):</strong> The <code>required</code> attribute makes an input field mandatory. The form will not submit if this field is left empty.</p>
+
+            <p><strong>Placeholder (placeholder):</strong> The <code>placeholder</code> attribute provides a hint to the user about what to enter in the input field. It appears as light text inside the field until the user starts typing.</p>
+
+            <p><strong>Value (value):</strong> The <code>value</code> attribute sets the initial value of the input field. This value is pre-filled in the field when the form is loaded.</p>
+
+            <p><strong>Readonly (readonly):</strong> The <code>readonly</code> attribute makes the input field uneditable. Users can see the value but cannot modify it.</p>
+
+            <p><strong>Disabled (disabled):</strong> The <code>disabled</code> attribute disables the input field, preventing the user from interacting with it. The value will not be submitted with the form.</p>
+
+            <p><strong>Autofocus (autofocus):</strong> The <code>autofocus</code> attribute automatically sets focus to the input field when the page loads, allowing the user to start typing immediately.</p>
+
+            <p><strong>Minlength (minlength):</strong> The <code>minlength</code> attribute specifies the minimum number of characters that the user can enter in the input field.</p>
+
+            <p><strong>Maxlength (maxlength):</strong> The <code>maxlength</code> attribute specifies the maximum number of characters that the user can enter in the input field.</p>
+
+            <h2>Form Attributes</h2>
+            <p><strong>Action (action):</strong> The <code>action</code> attribute in a form tag specifies the URL where the form data should be sent when the form is submitted.</p>
+
+            <p><strong>Name (name):</strong> The <code>name</code> attribute is used to identify form controls (like input fields) within the form data that is submitted to the server.</p>
+
+            <p><strong>Method (method):</strong> The <code>method</code> attribute specifies how the form data should be sent to the server. The two common methods are:</p>
+            <ul>
+                <li><strong>GET:</strong> Sends the form data appended to the URL in name/value pairs. Useful for form submissions where data retrieval is the main purpose, like search forms.</li>
+                <li><strong>POST:</strong> Sends the form data as part of the request body. This method is more secure and is used for actions that modify server data, like submitting forms with sensitive information.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

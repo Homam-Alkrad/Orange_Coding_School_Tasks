@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Input Fields Example</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .left-panel {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+            overflow-y: auto;
+        }
+
+        .right-panel {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            border-left: 2px solid #ddd;
+            overflow-y: auto;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .checkbox-group, .radio-group {
+            margin-bottom: 20px;
+        }
+
+            .checkbox-group label, .radio-group label {
+                display: inline-block;
+                margin-right: 10px;
+                font-weight: normal;
+            }
+
+        input[type="checkbox"], input[type="radio"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        input[type="submit"], input[type="reset"] {
+            width: auto;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+            input[type="submit"]:hover, input[type="reset"]:hover {
+                background-color: #45a049;
+            }
+
+        input[type="hidden"] {
+            display: none;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+            .navbar a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 20px;
+                text-decoration: none;
+            }
+
+                .navbar a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="Attribute.html">Attribute</a>
+        <a href="InputFiled.html">InputFiled</a>
+        <a href="Table&Colspan.html">Table&Colspan</a>
+    </div>
+    <div class="container">
+        <div class="left-panel">
+            <h2>Input Fields</h2>
+
+            <label for="text-input">Text Input:</label>
+            <input type="text" id="text-input" name="text-input" placeholder="Enter text here">
+
+            <label for="password-input">Password Input:</label>
+            <input type="password" id="password-input" name="password-input" placeholder="Enter your password">
+
+            <label for="email-input">Email Input:</label>
+            <input type="email" id="email-input" name="email-input" placeholder="Enter your email">
+
+            <label for="select-input">Select Input:</label>
+            <select id="select-input" name="select-input">
+                <option value="">--Choose an option--</option>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+            </select>
+
+            <label for="textarea-input">Textarea Input:</label>
+            <textarea id="textarea-input" name="textarea-input" rows="4" placeholder="Enter your message"></textarea>
+
+            <div class="radio-group">
+                <label>Radio Input:</label>
+                <label for="radio-option1"><input type="radio" id="radio-option2" name="radio-input" value="option1">Option 1</label>
+                <label for="radio-option2"><input type="radio" id="radio-option2" name="radio-input" value="option2">Option 2</label>
+                <label for="radio-option3"><input type="radio" id="radio-option3" name="radio-input" value="option3">Option 3</label>
+            </div>
+
+            <div class="checkbox-group">
+                <label>Checkbox Input:</label>
+                <label><input type="checkbox" name="checkbox-input" value="option1">Option 1</label>
+                <label><input type="checkbox" name="checkbox-input" value="option2">Option 2</label>
+                <label><input type="checkbox" name="checkbox-input" value="option3">Option 3</label>
+            </div>
+
+            <label for="number-input">Number Input:</label>
+            <input type="number" id="number-input" name="number-input" placeholder="Enter a number">
+
+            <label for="color-input">Color Input:</label>
+            <input type="color" id="color-input" name="color-input" value="#ff0000">
+
+            <label for="date-input">Date Input:</label>
+            <input type="date" id="date-input" name="date-input">
+
+            <label for="range-input">Range Input:</label>
+            <input type="range" id="range-input" name="range-input" min="0" max="100">
+
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+
+            <input type="hidden" id="hidden-input" name="hidden-input" value="hiddenValue">
+        </div>
+        <div class="right-panel">
+            <h2>Input Field Descriptions</h2>
+
+            <p><strong>Text Input:</strong> A single-line text input field where users can enter any kind of text. Commonly used for inputting names, addresses, or other short text strings.</p>
+
+            <p><strong>Password Input:</strong> A field used for entering passwords. The characters entered are hidden, usually represented by dots or asterisks, to keep the password confidential.</p>
+
+            <p><strong>Email Input:</strong> A field specifically designed for email addresses. It helps in validating that the entered value conforms to the standard email format.</p>
+
+            <p><strong>Select Input:</strong> A dropdown list that allows users to choose one option from a list of predefined options. It helps to standardize inputs and limit user choices.</p>
+
+            <p><strong>Textarea Input:</strong> A larger text input field that allows for multiple lines of text. Commonly used for entering comments, feedback, or any other form of extended text.</p>
+
+            <p><strong>Radio Input:</strong> Radio buttons allow the user to select one option from a set of choices. Only one radio button in a group can be selected at a time. In this example, the labels are linked to their respective radio buttons using the <code>for</code> attribute, allowing users to activate the button by clicking on the label text.</p>
+
+            <p><strong>Checkbox Input:</strong> Checkboxes allow the user to select multiple options from a set. Unlike radio buttons, multiple checkboxes can be selected simultaneously.</p>
+
+            <p><strong>Number Input:</strong> A field that allows users to input numeric values. It often includes arrows for increasing or decreasing the value.</p>
+
+            <p><strong>Color Input:</strong> This field allows users to pick a color from a color picker tool. The selected color is represented by a hex code (e.g., #ff0000 for red).</p>
+
+            <p><strong>Date Input:</strong> This field provides a date picker where users can select a date. The input is validated to ensure it is a valid date format.</p>
+
+            <p><strong>Range Input:</strong> A slider control that allows users to select a value from a specified range, usually displayed as a sliding bar.</p>
+
+            <p><strong>Submit Input:</strong> A button used to submit the form data. When clicked, it sends the data entered in the form to the server for processing.</p>
+
+            <p><strong>Reset Input:</strong> A button that resets the form to its default values, clearing any data the user has entered.</p>
+
+            <p><strong>Hidden Input:</strong> A field that is not visible to the user but holds data that can be sent with the form submission. Useful for passing additional data without displaying it on the form.</p>
+        </div>
+    </div>
+</body>
+</html>
