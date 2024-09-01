@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orange Coding School</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: grid;
+            grid-template-areas:
+                "header header"
+                "nav main"
+                "nav aside"
+                "footer footer";
+            grid-template-columns: 1fr 3fr;
+            grid-template-rows: auto 1fr auto auto;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            grid-area: header;
+            background-color: #ff6700;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .navbar {
+            grid-area: nav;
+            background-color: #333;
+            padding: 15px;
+        }
+
+            .navbar ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+                .navbar ul li {
+                    margin-bottom: 10px;
+                }
+
+                    .navbar ul li a {
+                        color: white;
+                        text-decoration: none;
+                        font-weight: bold;
+                    }
+
+        .main-content {
+            grid-area: main;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+            .card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .card h3 {
+                padding: 10px;
+                background-color: #ff6700;
+                color: white;
+                margin: 0;
+            }
+
+        .sidebar {
+            grid-area: aside;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            grid-area: footer;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Orange Coding School</h1>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section class="courses">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="HTML & CSS Fundamentals">
+                    <h3>HTML & CSS Fundamentals</h3>
+                </div>
+
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="JavaScript Essentials">
+                    <h3>JavaScript Essentials</h3>
+                </div>
+
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="React.js for Beginners">
+                    <h3>React.js for Beginners</h3>
+                </div>
+
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="Python for Data Science">
+                    <h3>Python for Data Science</h3>
+                </div>
+
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="Node.js & Express">
+                    <h3>Node.js & Express</h3>
+                </div>
+
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="Full Stack Development">
+                    <h3>Full Stack Development</h3>
+                </div>
+            </section>
+        </main>
+
+        <!-- Aside -->
+        <aside class="sidebar">
+            <h3>Upcoming Events</h3>
+            <ul>
+                <li>Web Development Bootcamp - Sept 15</li>
+                <li>Advanced JavaScript Workshop - Oct 1</li>
+                <li>React.js Masterclass - Nov 5</li>
+            </ul>
+        </aside>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 Orange Coding School. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
