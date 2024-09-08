@@ -14,30 +14,52 @@ body {
 
 /* Header Styling */
 .header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Ensure the nav bar stays on top */
     background-color: #1a1a1a;
-    color: #fff;
-    text-align: center;
-    padding: 40px 0;
+    color: white;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a slight shadow for separation */
 }
 
-    .header h1 {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-        color: #f7b731;
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left h1 {
+    font-size: 1.8rem;
+    color: #f7b731;
+    margin: 0;
+}
+
+.header-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px; /* Reduced gap for shorter navbar */
+    margin: 0;
+}
+
+    .header-nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: color 0.3s ease;
     }
 
-    .header p {
-        font-size: 1.2rem;
-        margin-bottom: 20px;
-        color: #fff;
-    }
+        .header-nav ul li a:hover {
+            color: #f7b731;
+        }
 
-/* Section Styles */
+/* Section Styling */
 .section {
-    padding: 60px 0;
+    padding: 40px 0;
     text-align: center;
     background-color: #1a1a1a;
-    color: #fff;
 }
 
     .section h2 {
@@ -45,6 +67,7 @@ body {
         margin-bottom: 20px;
         color: #f7b731;
         position: relative;
+        text-align: center;
     }
 
         .section h2::after {
@@ -63,7 +86,6 @@ body {
 /* Skills Section */
 #skills {
     padding: 60px 0;
-    background-color: #1a1a1a;
 }
 
 .skills-wrapper {
@@ -98,7 +120,7 @@ body {
         color: #fff;
     }
 
-/* Projects Section Styling */
+/* Projects Section */
 .project-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -107,61 +129,52 @@ body {
 }
 
 .project-item {
-    background-color: #2a2a2a; /* Dark background for projects */
+    background-color: #2a2a2a;
     padding: 20px;
     border-radius: 10px;
     border: 1px solid #444;
     transition: transform 0.3s, background-color 0.3s;
-    color: #ddd; /* Light text */
+    color: #ddd;
 }
 
     .project-item:hover {
-        transform: scale(1.05); /* Slight scale effect on hover */
-        background-color: #333; /* Darker background on hover */
+        transform: scale(1.05);
+        background-color: #333;
     }
 
     .project-item h3 {
         font-size: 1.8rem;
-        color: #f7b731; /* Orange for project titles */
+        color: #f7b731;
         margin-bottom: 10px;
     }
 
     .project-item p {
         font-size: 1rem;
         margin: 10px 0;
-        color: #ccc; /* Lighter gray for descriptions */
+        color: #ccc;
     }
 
     .project-item .project-date {
-        color: #f7b731; /* Date in orange */
+        color: #f7b731;
         font-weight: bold;
         font-size: 1.2rem;
-        margin-bottom: 5px;
     }
 
 /* GitHub link styling */
-.github-link {
+.github-link, .download-link {
     display: inline-block;
     padding: 10px 20px;
     background-color: #333;
-    color: #f7b731; /* Orange for GitHub link */
+    color: #f7b731;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s;
     font-weight: bold;
 }
 
-    .github-link:hover {
-        background-color: #444; /* Slightly lighter hover effect */
+    .github-link:hover, .download-link:hover {
+        background-color: #444;
     }
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .project-list {
-        grid-template-columns: 1fr; /* Single column on smaller screens */
-    }
-}
-
 
 /* Footer Styling */
 .footer {
@@ -177,223 +190,90 @@ body {
     display: block;
     border: 2px solid #f7b731;
     transition: border-color 1s ease-in-out;
+    height: 200px;
+    border-radius: 50%;
+    margin-top: 120px;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .project-list {
-        grid-template-columns: 1fr;
-    }
-
-    .skills-wrapper {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-/* Navbar Styles */
-nav {
-    margin-top: 20px;
+/* Objective and Education Styling */
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    gap: 30px;
 }
 
-    nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        justify-content: center; /* Center the navbar links */
-        gap: 20px; /* Add space between each link */
+.objective-box, .education-box {
+    background-color: #1a1a1a;
+    color: white;
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+    .objective-box p, .education-box p {
+        font-size: 1.1rem;
+        color: #ccc;
+        margin-bottom: 10px;
     }
 
-        nav ul li {
-            display: inline-block;
-        }
+    .objective-box h2::after, .education-box h2::after {
+        content: '';
+        display: block;
+        width: 100px;
+        height: 3px;
+        background: #f7b731;
+        margin-top: 10px;
+    }
 
-            nav ul li a {
-                color: #00f; /* Blue color for links */
-                text-decoration: none;
-                font-weight: bold;
-                font-size: 1rem;
-                transition: color 0.3s ease;
-            }
-
-                nav ul li a:hover {
-                    color: #f7b731; /* Orange color on hover */
-                }
-/* Certificates Section */
-.certificate-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+/* Experience & Volunteer Sections */
+.experience-list, .volunteering-list {
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
-    margin-top: 20px;
+    justify-content: space-between;
 }
 
-.certificate-item {
+.experience-item, .volunteer-item, .certificate-item {
+    flex: 1 1 calc(50% - 20px);
     background-color: #2a2a2a;
     padding: 20px;
     border-radius: 10px;
-    color: #ddd;
-    position: relative;
     border: 1px solid #444;
-    text-align: center; /* Center content */
-}
-
-.certificate-topic-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%; /* Circular image */
-    margin: 0 auto 20px; /* Center the image and add bottom margin */
-    display: block;
-}
-
-.certificate-item h3 {
-    font-size: 1.5rem;
-    color: #f7b731;
-    margin-bottom: 10px;
-}
-
-.certificate-item p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    color: #fff;
-}
-
-.certificate-item .certificate-date {
-    color: #f7b731;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-}
-
-.download-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #f7b731;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    font-weight: bold;
-}
-
-    .download-link:hover {
-        background-color: #444;
-    }
-/* Certificates Section */
-.certificate-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-    gap: 20px; /* Add space between each certificate */
-    margin-top: 20px;
-}
-
-.certificate-item {
-    background-color: #2a2a2a; /* Same background as projects */
-    padding: 20px;
-    border-radius: 10px;
-    color: #fff;
-    position: relative;
-    border: 1px solid #444; /* Add slight border for separation */
     transition: transform 0.3s ease, background-color 0.3s ease;
-    text-align: center;
+    color: #fff;
 }
 
-    .certificate-item:hover {
-        transform: scale(1.05); /* Slight scale on hover */
-        background-color: #333; /* Darker background on hover */
+    .experience-item:hover, .volunteer-item:hover, .certificate-item:hover {
+        transform: scale(1.05);
+        background-color: #333;
     }
 
-    .certificate-item h3 {
+    .experience-item h3, .volunteer-item h3, .certificate-item h3 {
         font-size: 1.5rem;
-        color: #f7b731; /* Orange title for certificates */
-        margin: 10px 0;
+        color: #f7b731;
+        margin-bottom: 10px;
     }
 
-    .certificate-item p {
+    .experience-item p, .volunteer-item p, .certificate-item p {
+        color: #ccc;
         font-size: 1rem;
-        color: #ccc; /* Light gray for the description */
     }
 
-    .certificate-item .certificate-date {
-        color: #f7b731; /* Orange date */
+    .experience-item .experience-date, .certificate-item .certificate-date {
+        color: #f7b731;
         font-weight: bold;
         font-size: 1.2rem;
     }
-
-.download-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #f7b731; /* Orange text for download button */
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    font-weight: bold;
-}
-
-    .download-link:hover {
-        background-color: #444; /* Slightly lighter hover effect for download button */
-    }
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .certificate-list {
-        grid-template-columns: 1fr; /* Single column on smaller screens */
-    }
-}
-/* Header (Nav Bar) Styling */
-.header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000; /* Ensure the nav bar stays on top */
-    background-color: #1a1a1a;
-    color: white;
-    padding: 10px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a slight shadow for separation */
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header-left h1 {
-    font-size: 1.8rem;
-    color: #f7b731; /* Main color for name */
-    margin: 0;
-}
-
-.header-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 15px; /* Reduced gap for shorter navbar */
-    margin: 0;
-}
-
-    .header-nav ul li {
-        display: inline-block;
-    }
-
-        .header-nav ul li a {
-            color: white; /* White text for links */
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-            font-size: 1rem;
-        }
-
-            .header-nav ul li a:hover {
-                color: #f7b731; /* Orange color on hover */
-            }
-
 /* About Section */
 .about-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0;
+    padding: 50px 0; /* Add more padding for a spacious look */
     margin-top: 80px; /* Ensure space for the fixed header */
+    color: #fff;
+    text-align: center;
 }
 
 .about-image {
@@ -403,7 +283,8 @@ nav {
 
     .about-image img {
         max-width: 300px;
-        border: none; /* No border, no circular shape */
+        border: none;
+        border-radius: 10px; /* Optional: give the image rounded corners */
     }
 
 .about-text {
@@ -411,25 +292,32 @@ nav {
     padding-left: 20px;
 }
 
+    .about-text h2 {
+        font-size: 2.5rem;
+        color: #f7b731; /* Match the color of the title */
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+        .about-text h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: #f7b731;
+            margin: 10px auto;
+        }
+
+    .about-text h4 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        color: #fff;
+    }
+
     .about-text p {
         font-size: 1.1rem;
-        color: white;
+        color: #ccc; /* Slightly lighter text for readability */
         margin-bottom: 20px;
-    }
-
-    .about-text .social-icons {
-        margin: 20px 0;
-    }
-
-.social-icons a {
-    margin-right: 10px;
-    color: #f7b731;
-    font-size: 1.5rem;
-    text-decoration: none;
-}
-
-    .social-icons a:hover {
-        color: white;
     }
 
 .contact-button {
@@ -449,10 +337,6 @@ nav {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .header-content {
-        flex-direction: column;
-    }
-
     .about-content {
         flex-direction: column;
         text-align: center;
@@ -460,237 +344,151 @@ nav {
 
     .about-image {
         padding-right: 0;
+        margin-bottom: 20px;
     }
 
     .about-text {
         padding-left: 0;
     }
-
-    .header-nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
 }
-/* Section Title Styling */
-.section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #f7b731; /* Use the orange color for section titles */
-    position: relative;
-    text-align: center;
-}
-
-.section h2::after {
-    content: '';
-    display: block;
-    width: 100px;
-    height: 3px;
-    background: #f7b731; /* Orange underline */
-    margin: 10px auto;
-}
-
-/* About Section Styling */
-.about-content {
+/* General styling for the header */
+.header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding: 20px;
+}
+
+.header-nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent list items from wrapping */
+}
+
+    .header-nav ul li {
+        margin-right: 20px;
+    }
+
+        .header-nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+
+            .header-nav ul li a:hover {
+                color: #f7b731; /* Highlight link on hover */
+            }
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .header-nav ul {
+        overflow-x: scroll; /* Horizontal scroll on smaller screens */
+    }
+
+        .header-nav ul li {
+            min-width: 100%; /* Show one item at a time */
+            flex-shrink: 0; /* Prevent items from shrinking */
+        }
+
+        .header-nav ul::-webkit-scrollbar {
+            height: 8px; /* Custom scrollbar height */
+        }
+
+        .header-nav ul::-webkit-scrollbar-thumb {
+            background-color: #f7b731; /* Orange scrollbar */
+            border-radius: 10px;
+        }
+}
+/* General styling for the header */
+.header {
+    display: flex;
     justify-content: space-between;
-    padding: 40px 0;
-    margin-top: 80px; /* Ensures there's space for the fixed header */
+    align-items: center;
+    padding: 20px;
 }
 
-.about-image img {
-    max-width: 300px;
-    border: none; /* No border or circular shape */
-}
-
-.about-text p {
-    font-size: 1.1rem;
-    color: white;
-    margin-bottom: 20px;
-}
-
-.social-icons {
-    margin: 20px 0;
-}
-
-.social-icons a {
-    margin-right: 10px;
+.header-left h1 {
     color: #f7b731;
-    font-size: 1.5rem;
-    text-decoration: none;
+    margin: 0;
 }
 
-.social-icons a:hover {
-    color: white;
-}
-
-.contact-button {
-    background-color: transparent;
-    color: white;
-    border: 2px solid #f7b731;
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.contact-button:hover {
-    background-color: #f7b731;
-    color: black;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .about-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .about-image {
-        padding-right: 0;
-    }
-
-    .about-text {
-        padding-left: 0;
-    }
-}
-/* Objective and Education Row */
-.row {
+.header-nav ul {
     display: flex;
-    justify-content: space-between;
-    padding: 40px;
-    gap: 30px; /* Gap between the two sections */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent list items from wrapping */
 }
 
-/* Objective and Education Section Box Styling */
-.objective-box, .education-box {
-    background-color: #1a1a1a; /* Dark background */
-    color: white; /* White text */
-    flex: 1; /* Makes both sections equal width */
-    padding: 20px;
-    border-radius: 10px; /* Optional: add a border radius for better visual separation */
-}
-
-
-    .objective-box p, .education-box p {
-        font-size: 1.1rem;
-        color: #ccc; /* Lighter gray text for readability */
-        margin-bottom: 10px;
+    .header-nav ul li {
+        margin-right: 20px;
+        position: relative; /* For the underline */
     }
 
-    /* Add the orange underline for the section titles */
-    .objective-box h2::after, .education-box h2::after {
-        content: '';
-        display: block;
-        width: 100px;
-        height: 3px;
-        background: #f7b731;
-        margin-top: 10px;
-    }
+        .header-nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            display: inline-block;
+            transition: color 0.3s, padding 0.3s;
+            position: relative;
+        }
 
-/* Make it responsive for smaller screens */
+            /* Orange underline effect */
+            .header-nav ul li a::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 3px;
+                background-color: #f7b731;
+                bottom: 0;
+                left: 0;
+                transition: width 0.3s ease;
+            }
+
+            .header-nav ul li a:hover::after {
+                width: 100%; /* Full underline on hover */
+            }
+
+            .header-nav ul li a:hover {
+                color: #f7b731; /* Change text color on hover */
+            }
+
+/* Responsive styles */
 @media (max-width: 768px) {
-    .row {
-        flex-direction: column; /* Stack them on top of each other on smaller screens */
+    .header-nav ul {
+        overflow-x: scroll; /* Horizontal scroll on smaller screens */
     }
 
-    .objective-box, .education-box {
-        width: 100%;
-        margin-bottom: 20px; /* Add spacing between stacked items */
-    }
-}
-/* Volunteering Section */
-.volunteering-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-    margin-top: 20px;
-}
+        .header-nav ul li {
+            min-width: 100%; /* Show one item at a time */
+            flex-shrink: 0; /* Prevent items from shrinking */
+        }
 
-.volunteer-item {
-    flex: 1 1 calc(50% - 20px); /* Two items per row, 20px gap */
-    background-color: #2a2a2a;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #444;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    color: #fff;
-}
+            .header-nav ul li a {
+                padding: 8px 10px; /* Reduce padding for smaller screens */
+                font-size: 0.9rem; /* Reduce font size */
+            }
 
-.volunteer-item:hover {
-    transform: scale(1.05);
-    background-color: #333;
-}
+        /* Custom scrollbar */
+        .header-nav ul::-webkit-scrollbar {
+            height: 6px; /* Custom scrollbar height */
+        }
 
-.volunteer-item h3 {
-    font-size: 1.5rem;
-    color: #f7b731;
-    margin-bottom: 10px;
-}
+        .header-nav ul::-webkit-scrollbar-thumb {
+            background-color: #f7b731; /* Orange scrollbar */
+            border-radius: 10px;
+        }
 
-.volunteer-item p {
-    color: #ccc;
-    font-size: 1rem;
-}
+        /* Reduce margin between items */
+        .header-nav ul li {
+            margin-right: 2px;
+        }
 
-/* Responsive styling */
-@media (max-width: 768px) {
-    .volunteer-item {
-        flex: 1 1 100%; /* Full width on smaller screens */
-    }
-}
-/* Experience Section */
-.experience-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
-    justify-content: space-between;
-}
-
-.experience-item {
-    flex: 1 1 calc(50% - 20px); /* Two items per row with a gap */
-    background-color: #2a2a2a;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #444;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    color: #fff;
-}
-
-    .experience-item:hover {
-        transform: scale(1.05);
-        background-color: #333;
-    }
-
-    .experience-item h3 {
-        font-size: 1.5rem;
-        color: #f7b731; /* Orange for the job title */
-        margin-bottom: 10px;
-    }
-
-    .experience-item .experience-date {
-        color: #f7b731; /* Orange for the date */
-        font-weight: bold;
-        font-size: 1.2rem;
-        margin-bottom: 5px;
-    }
-
-    .experience-item p, .experience-item ul {
-        color: #ccc; /* Lighter gray for text */
-        font-size: 1rem;
-        margin: 10px 0;
-    }
-
-    .experience-item ul {
-        list-style-type: disc;
-        margin-left: 20px;
-    }
-
-/* Responsive styling */
-@media (max-width: 768px) {
-    .experience-item {
-        flex: 1 1 100%; /* Full width on smaller screens */
-    }
 }
