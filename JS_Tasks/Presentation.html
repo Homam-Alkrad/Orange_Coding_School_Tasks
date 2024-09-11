@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Statements Explanation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .topic {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        pre {
+            background-color: #f7f7f7;
+            padding: 10px;
+            border-left: 5px solid #2ecc71;
+            overflow-x: auto;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #2980b9;
+            }
+
+        .example-output {
+            background-color: #ecf0f1;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border-left: 5px solid #34495e;
+        }
+
+            .example-output p {
+                font-weight: bold;
+                color: #2c3e50;
+            }
+    </style>
+</head>
+<body>
+
+    <h1>Understanding JavaScript Loops and Functions</h1>
+
+    <div class="container">
+
+        <!-- Topic 1: for statement -->
+        <div class="topic">
+            <h2>1. What is the <code>for</code> Statement in JavaScript?</h2>
+            <p>The <code>for</code> loop in JavaScript is used when you know the number of iterations beforehand. It consists of three parts: initialization, condition, and increment. It repeats a block of code as long as the specified condition is true.</p>
+            <pre><code>for (let i = 0; i < 5; i++) {
+    console.log(i);
+}</code></pre>
+            <button onclick="runForLoop()">Run Example</button>
+            <div class="example-output" id="forOutput"></div>
+        </div>
+
+        <!-- Topic 2: while statement -->
+        <div class="topic">
+            <h2>2. What is the <code>while</code> Statement in JavaScript?</h2>
+            <p>The <code>while</code> loop continues to execute a block of code as long as the condition is true. It is often used when the number of iterations is not known beforehand.</p>
+            <pre><code>let i = 0;
+while (i < 5) {
+    console.log(i);
+    i++;
+}</code></pre>
+            <button onclick="runWhileLoop()">Run Example</button>
+            <div class="example-output" id="whileOutput"></div>
+        </div>
+
+        <!-- Topic 3: do while statement -->
+        <div class="topic">
+            <h2>3. What is the <code>do-while</code> Statement in JavaScript?</h2>
+            <p>The <code>do-while</code> loop is similar to the <code>while</code> loop, but it guarantees that the block of code will be executed at least once before checking the condition.</p>
+            <pre><code>let i = 0;
+do {
+    console.log(i);
+    i++;
+} while (i < 5);</code></pre>
+            <button onclick="runDoWhileLoop()">Run Example</button>
+            <div class="example-output" id="doWhileOutput"></div>
+        </div>
+
+        <!-- Topic 4: Function -->
+        <div class="topic">
+            <h2>4. What is a <code>function</code> in JavaScript?</h2>
+            <p>A function is a block of code designed to perform a particular task. It is executed when it is invoked (called). Functions can take inputs (parameters) and return outputs.</p>
+            <pre><code>function greet(name) {
+    return 'Hello, ' + name;
+}
+
+console.log(greet('Homam'));</code></pre>
+            <button onclick="runFunctionExample()">Run Example</button>
+            <div class="example-output" id="functionOutput"></div>
+        </div>
+
+        <!-- Differences Section -->
+        <div class="topic">
+            <h2>Differences Between <code>for</code>, <code>while</code>, and <code>do-while</code></h2>
+            <p>The main difference between these loops is how they check the condition:</p>
+            <ul>
+                <li><b><code>for</code></b>: Best when you know the exact number of iterations.</li>
+                <li><b><code>while</code></b>: Best when the number of iterations is unknown, and you need to keep checking the condition.</li>
+                <li><b><code>do-while</code></b>: Best when you need the loop to execute at least once, regardless of the condition.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>// Run the for loop example
+        function runForLoop() {
+            let output = '';
+            for (let i = 0; i < 5; i++) {
+                output += i + ' ';
+            }
+            document.getElementById('forOutput').innerHTML = '<p>Output: ' + output + '</p>';
+        }
+
+        // Run the while loop example
+        function runWhileLoop() {
+            let output = '';
+            let i = 0;
+            while (i < 5) {
+                output += i + ' ';
+                i++;
+            }
+            document.getElementById('whileOutput').innerHTML = '<p>Output: ' + output + '</p>';
+        }
+
+        // Run the do-while loop example
+        function runDoWhileLoop() {
+            let output = '';
+            let i = 0;
+            do {
+                output += i + ' ';
+                i++;
+            } while (i < 5);
+            document.getElementById('doWhileOutput').innerHTML = '<p>Output: ' + output + '</p>';
+        }
+
+        // Run the function example
+        function runFunctionExample() {
+            function greet(name) {
+                return 'Hello, ' + name;
+            }
+            const output = greet('Homam');
+            document.getElementById('functionOutput').innerHTML = '<p>Output: ' + output + '</p>';
+        }</script>
+
+</body>
+</html>
