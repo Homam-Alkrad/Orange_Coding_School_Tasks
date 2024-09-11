@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practice</title>
+
+    <!-- CSS to enhance the page -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #444;
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            margin: 10px 0;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #218838;
+            }
+
+        #output {
+            font-size: 1.2em;
+            color: #000;
+            margin-top: 20px;
+        }
+
+        /* Simple layout improvement */
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            margin: 40px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Tasks</h1>
+
+    <!-- Simple Calculator Section -->
+    <div class="calculator">
+        <h2>Simple Calculator</h2>
+
+        <label for="operation">Enter operation (+, -, *, /):</label>
+        <input type="text" id="operation" placeholder="e.g. +">
+        <br>
+
+        <label for="num1">Enter first number:</label>
+        <input type="number" id="num1">
+        <br>
+
+        <label for="num2">Enter second number:</label>
+        <input type="number" id="num2">
+        <br>
+
+        <button onclick="performOperation()">Calculate</button>
+
+        <h3>Result:</h3>
+        <p id="output"></p>
+    </div>
+
+    <script>
+        // Part 1: Declare variables and display them
+        console.log("===== Part 1: Declare Variables =====");
+
+        let firstName = "Homam";
+        let lastName = "Qasem";
+        let age = 22;
+
+        console.log("First Name:", firstName);
+        console.log("Last Name:", lastName);
+        console.log("Age:", age);
+
+        // Part 2: Working with var, let, const
+        console.log("===== Part 2: Var, Let, Const =====");
+
+        // var example
+        var name = "Homam";
+        console.log("Initial name:", name); // Output: Ahmad
+        name = "Homam Ahmad";
+        console.log("Changed name:", name); // Output: Qasem
+
+        // let example
+        let newAge = 30;
+        console.log("Initial age:", newAge); // Output: 30
+        newAge = 35;
+        console.log("Changed age:", newAge); // Output: 35
+
+        // const example
+        const country = "Jordan";
+        console.log("Country:", country); // Output: Jordan
+        // Uncommenting the line below will throw an error
+        // country = "Syria"; // Error: Assignment to constant variable
+
+        // Part 3: Type conversion using Number(), String(), Boolean()
+        console.log("===== Part 3: Type Conversion =====");
+
+        let num = 2002;
+        let strNum = String(num);
+        console.log("String version of number:", strNum); // Output: "1987"
+
+        let str = "22";
+        let numStr = Number(str);
+        console.log("Number version of string:", numStr); // Output: 25
+
+        let boolValue = Boolean(1);
+        console.log("Boolean value:", boolValue); // Output: true
+
+        console.log("Boolean from empty string:", Boolean("")); // Output: false
+        console.log("Number from boolean true:", Number(true)); // Output: 1
+
+        // Part 4: Simple Calculator Operation
+        console.log("===== Part 4: Calculator Operation =====");
+
+        function performOperation() {
+            // Get inputs from the user
+            let operation = document.getElementById("operation").value;
+            let num1 = Number(document.getElementById("num1").value);
+            let num2 = Number(document.getElementById("num2").value);
+
+            // Initialize a result variable
+            let result;
+
+            // Perform the operation based on the input
+            if (operation === "+") {
+                result = num1 + num2;
+            } else if (operation === "-") {
+                result = num1 - num2;
+            } else if (operation === "*") {
+                result = num1 * num2;
+            } else if (operation === "/") {
+                // Avoid division by zero
+                if (num2 !== 0) {
+                    result = num1 / num2;
+                } else {
+                    result = "Error! Division by zero.";
+                }
+            } else {
+                result = "Invalid operation!";
+            }
+
+            // Display the result in the HTML and console
+            document.getElementById("output").textContent = `${num1}  ${operation}  ${num2} = ${result}`;
+            console.log(`${num1}  ${operation}  ${num2} = ${result}`);
+        }
+    </script>
+
+</body>
+</html>
