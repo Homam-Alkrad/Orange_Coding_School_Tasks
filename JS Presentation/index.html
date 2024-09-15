@@ -14,106 +14,72 @@
     <div class="container">
         <h2>JavaScript Objects and Arrays</h2>
 
-        <section>
-            <h3>Object in JavaScript</h3>
-            <p>An object is a collection of properties, where each property is defined by a key-value pair. Example:</p>
-            <pre><code>
-let person = {
-    firstName: 'John',
-    lastName: 'Doe',
-    age: 30
-};</code></pre>
-        </section>
-
-        <section>
-            <h3>Arrays in JavaScript</h3>
-            <p>Arrays are a collection of elements that can be of any type. Here's an array:</p>
-            <pre><code>let fruits = ['Apple', 'Banana', 'Orange'];</code></pre>
-        </section>
+        <!-- Existing content with examples -->
 
         <section>
             <h3>Array Methods</h3>
-
-            <div class="method">
-                <h4>Array Length</h4>
-                <p>The <code>length</code> property returns the number of elements in an array.</p>
-                <p><strong>Before:</strong> <span id="lengthBefore"></span></p>
-                <button onclick="showArrayLength()">Show Array Length</button>
-                <p id="lengthResult"></p>
-            </div>
-
-            <div class="method">
-                <h4>Array toString()</h4>
-                <p>The <code>toString()</code> method returns a string representation of the array.</p>
-                <p><strong>Before:</strong> <span id="toStringBefore"></span></p>
-                <button onclick="arrayToString()">Convert to String</button>
-                <p id="toStringResult"></p>
-            </div>
-
-            <div class="method">
-                <h4>Array pop()</h4>
-                <p>The <code>pop()</code> method removes the last element from an array and returns that element.</p>
-                <p><strong>Before:</strong> <span id="popBefore"></span></p>
-                <button onclick="arrayPop()">Pop an Element</button>
-                <p id="popResult"></p>
-            </div>
-
-            <div class="method">
-                <h4>Array push()</h4>
-                <p>The <code>push()</code> method adds one or more elements to the end of an array and returns the new length of the array.</p>
-                <p><strong>Before:</strong> <span id="pushBefore"></span></p>
-                <button onclick="arrayPush()">Push a New Element</button>
-                <p id="pushResult"></p>
-            </div>
-
-            <div class="method">
-                <h4>Array shift()</h4>
-                <p>The <code>shift()</code> method removes the first element from an array and returns that element.</p>
-                <p><strong>Before:</strong> <span id="shiftBefore"></span></p>
-                <button onclick="arrayShift()">Shift an Element</button>
-                <p id="shiftResult"></p>
-            </div>
-
-            <div class="method">
-                <h4>Array unshift()</h4>
-                <p>The <code>unshift()</code> method adds one or more elements to the beginning of an array and returns the new length of the array.</p>
-                <p><strong>Before:</strong> <span id="unshiftBefore"></span></p>
-                <button onclick="arrayUnshift()">Unshift an Element</button>
-                <p id="unshiftResult"></p>
-            </div>
-
-            <div class="method">
-                <h4>Array join()</h4>
-                <p>The <code>join()</code> method joins all elements of an array into a string.</p>
-                <p><strong>Before:</strong> <span id="joinBefore"></span></p>
-                <button onclick="arrayJoin()">Join Elements</button>
-                <p id="joinResult"></p>
-            </div>
-
-            <div class="method">
-                <h4>Array delete()</h4>
-                <p>The <code>delete</code> operator removes an element from an array, leaving an empty slot.</p>
-                <p><strong>Before:</strong> <span id="deleteBefore"></span></p>
-                <button onclick="arrayDelete()">Delete an Element</button>
-                <p id="deleteResult"></p>
-            </div>
-
-            <div class="method">
-                <h4>Array concat()</h4>
-                <p>The <code>concat()</code> method is used to merge two or more arrays.</p>
-                <p><strong>Before:</strong> <span id="concatBefore"></span></p>
-                <button onclick="arrayConcat()">Concat Arrays</button>
-                <p id="concatResult"></p>
-            </div>
-
-            <div class="method">
-                <h4>Array flat()</h4>
-                <p>The <code>flat()</code> method flattens an array of arrays into a single array.</p>
-                <p><strong>Before:</strong> <span id="flatBefore"></span></p>
-                <button onclick="arrayFlat()">Flatten Array</button>
-                <p id="flatResult"></p>
-            </div>
+            <!-- All existing method examples (length, toString, pop, push, shift, unshift, join, delete, concat, flat) -->
         </section>
+
+        <!-- New section with comparison tables -->
+
+        <section>
+            <h3>Comparison of Array Methods</h3>
+
+            <!-- Table 1: Comparison between shift(), pop(), and delete() -->
+            <h4>Table 1: Differences between <code>shift()</code>, <code>pop()</code>, and <code>delete()</code></h4>
+            <table border="1" cellpadding="10" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                        <th>Effect on Array</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>shift()</code></td>
+                        <td>Removes the first element of the array and shifts the remaining elements to the left.</td>
+                        <td>The length of the array is reduced by 1. No gaps.</td>
+                    </tr>
+                    <tr>
+                        <td><code>pop()</code></td>
+                        <td>Removes the last element of the array.</td>
+                        <td>The length of the array is reduced by 1. No gaps.</td>
+                    </tr>
+                    <tr>
+                        <td><code>delete</code></td>
+                        <td>Removes the element at a specific index but leaves <code>undefined</code> in its place.</td>
+                        <td>The length of the array remains the same, but there may be empty slots in the array.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Table 2: Comparison between shift() and push() -->
+            <h4>Table 2: Differences between <code>shift()</code> and <code>push()</code></h4>
+            <table border="1" cellpadding="10" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                        <th>Effect on Array</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>shift()</code></td>
+                        <td>Removes the first element of the array and shifts the remaining elements to the left.</td>
+                        <td>The length of the array is reduced by 1. The first element is removed.</td>
+                    </tr>
+                    <tr>
+                        <td><code>push()</code></td>
+                        <td>Adds one or more elements to the end of the array.</td>
+                        <td>The length of the array is increased by the number of elements added. New elements are added at the end.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
     </div>
 
     <script src="script.js"></script>

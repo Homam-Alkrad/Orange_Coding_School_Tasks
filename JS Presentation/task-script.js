@@ -42,19 +42,20 @@ function completeFirstTask() {
     }
 }
 
-// Function to remove a specific task (using delete)
+// Function to remove a specific task (case-insensitive)
 function removeTask() {
-    const taskToRemove = prompt("Enter the task to delete (exact text):");
-    const index = tasks.indexOf(taskToRemove);
+    const taskToRemove = prompt("Enter the task to delete (exact text):").trim().toLowerCase();
+    const index = tasks.findIndex(task => task.toLowerCase() === taskToRemove);
     if (index > -1) {
-        delete tasks[index];  // Using delete operator
-        tasks = tasks.filter(task => task !== undefined); // Filter out undefined values
+        tasks.splice(index, 1);  // Using splice to remove the task completely
         alert(`Task removed: ${taskToRemove}`);
         updateTaskList();
     } else {
         alert('Task not found.');
     }
 }
+
+
 
 // Function to update the task list in the DOM
 function updateTaskList() {
