@@ -3,179 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orange Coding School - JavaScript Objects and Arrays</title>
-    <link rel="stylesheet" href="style.css">
+    <title>JavaScript map() Method with Objects and Parameters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        pre {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 5px solid #333;
+            white-space: pre-wrap; /* Makes the code snippet wrap lines in mobile view */
+        }
+
+        code {
+            font-family: monospace;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #218838;
+            }
+
+        .output {
+            background-color: #f1f1f1;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Orange Coding School</h1>
+        <h1>JavaScript map() Method</h1>
+        <p>Learn how to use the <code>map()</code> method with various parameters and real-world object data.</p>
     </header>
 
-    <div class="container">
-        <h2>JavaScript Objects and Arrays</h2>
+    <!-- Example 1: Basic transformation -->
+    <section>
+        <h2>Example 1: Basic Transformation</h2>
+        <p>Transform each element by doubling its value.</p>
+        <pre>
+<code>
+const numbers = [1, 2, 3];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // Output: [2, 4, 6]
+        </code></pre>
+        <button onclick="runBasicTransformation()">Run Example 1</button>
+        <div id="basic-transformation-output" class="output"></div>
+    </section>
 
-        <section>
-            <h3>Object in JavaScript</h3>
-            <p>An object is a collection of properties, where each property is defined by a key-value pair. Example:</p>
-            <pre><code>
-let person = {
-    firstName: 'John',
-    lastName: 'Doe',
-    age: 30
-};</code></pre>
-        </section>
+    <!-- Example 2: Using index in map() -->
+    <section>
+        <h2>Example 2: Using Index in map()</h2>
+        <p>Add the index to each element's value.</p>
+        <pre>
+<code>
+const numbers = [10, 20, 30];
+const indexed = numbers.map((num, index) => num + index);
+console.log(indexed); // Output: [10, 21, 32]
+        </code></pre>
+        <button onclick="runIndexedTransformation()">Run Example 2</button>
+        <div id="indexed-transformation-output" class="output"></div>
+    </section>
 
-        <section>
-            <h3>Arrays in JavaScript</h3>
-            <p>Arrays are a collection of elements that can be of any type. Here's an array:</p>
-            <pre><code>let fruits = ['Apple', 'Banana', 'Orange'];</code></pre>
-        </section>
+    <!-- Example 3: Using original array in map() -->
+    <section>
+        <h2>Example 3: Accessing the Entire Array in map()</h2>
+        <p>Use the original array to access other elements while processing.</p>
+        <pre>
+<code>
+const numbers = [1, 2, 3];
+const summedWithArray = numbers.map((num, index, arr) => num + arr[0]);
+console.log(summedWithArray); // Output: [2, 3, 4]
+        </code></pre>
+        <button onclick="runOriginalArrayTransformation()">Run Example 3</button>
+        <div id="original-array-output" class="output"></div>
+    </section>
 
-        <section>
-            <h3>Array Methods</h3>
+    <!-- Example 4: Using objects with map() -->
+    <section>
+        <h2>Example 4: Processing Object Data</h2>
+        <p>Apply a 10% discount on product prices.</p>
+        <pre>
+<code>
+const products = [
+  { name: 'Laptop', price: 1000 },
+  { name: 'Phone', price: 500 },
+  { name: 'Tablet', price: 300 }
+];
 
-            <div class="method">
-                <h4>Array Length</h4>
-                <p>The <code>length</code> property returns the number of elements in an array.</p>
-                <p><strong>Before:</strong> <span id="lengthBefore"></span></p>
-                <button onclick="showArrayLength()">Show Array Length</button>
-                <p id="lengthResult"></p>
-            </div>
+const discounted = products.map(product => ({
+  name: product.name,
+  discountedPrice: product.price * 0.9
+}));
+console.log(discounted);
+        </code></pre>
+        <button onclick="runProductDiscountExample()">Run Example 4</button>
+        <div id="discounted-products-output" class="output"></div>
+    </section>
 
-            <div class="method">
-                <h4>Array toString()</h4>
-                <p>The <code>toString()</code> method returns a string representation of the array.</p>
-                <p><strong>Before:</strong> <span id="toStringBefore"></span></p>
-                <button onclick="arrayToString()">Convert to String</button>
-                <p id="toStringResult"></p>
-            </div>
+    <!-- Example 5: Object mapping for properties -->
+    <section>
+        <h2>Example 5: Mapping Object Properties</h2>
+        <p>Extract just the names from an array of user objects.</p>
+        <pre>
+<code>
+const users = [
+  { name: 'Homam', age: 25 },
+  { name: 'Ahmad', age: 22 },
+  { name: 'Osama', age: 30 }
+];
 
-            <div class="method">
-                <h4>Array pop()</h4>
-                <p>The <code>pop()</code> method removes the last element from an array and returns that element.</p>
-                <p><strong>Before:</strong> <span id="popBefore"></span></p>
-                <button onclick="arrayPop()">Pop an Element</button>
-                <p id="popResult"></p>
-            </div>
+const userNames = users.map(user => user.name);
+console.log(userNames); // Output: ['Homam', 'Ahmad', 'Osama']
+        </code></pre>
+        <button onclick="runObjectMapping()">Run Example 5</button>
+        <div id="object-mapping-output" class="output"></div>
+    </section>
 
-            <div class="method">
-                <h4>Array push()</h4>
-                <p>The <code>push()</code> method adds one or more elements to the end of an array and returns the new length of the array.</p>
-                <p><strong>Before:</strong> <span id="pushBefore"></span></p>
-                <button onclick="arrayPush()">Push a New Element</button>
-                <p id="pushResult"></p>
-            </div>
+    <!-- Example 6: Number operations with map() -->
+    <section>
+        <h2>Example 6: Performing Mathematical Operations</h2>
+        <p>Double each number in the array.</p>
+        <pre>
+<code>
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(number => number * 2);
+console.log(doubled); // Output: [2, 4, 6, 8, 10]
+        </code></pre>
+        <button onclick="runNumberOperations()">Run Example 6</button>
+        <div id="number-operations-output" class="output"></div>
+    </section>
 
-            <div class="method">
-                <h4>Array shift()</h4>
-                <p>The <code>shift()</code> method removes the first element from an array and returns that element.</p>
-                <p><strong>Before:</strong> <span id="shiftBefore"></span></p>
-                <button onclick="arrayShift()">Shift an Element</button>
-                <p id="shiftResult"></p>
-            </div>
+    <!-- Example 7: Converting objects to a different structure -->
+    <section>
+        <h2>Example 7: Creating New Structures from Objects</h2>
+        <p>Convert student data into a pass/fail summary based on scores.</p>
+        <pre>
+<code>
+const students = [
+  { name: 'Homam', score: 85 },
+  { name: 'Ahmad', score: 75 },
+  { name: 'Osama', score: 90 }
+];
 
-            <div class="method">
-                <h4>Array unshift()</h4>
-                <p>The <code>unshift()</code> method adds one or more elements to the beginning of an array and returns the new length of the array.</p>
-                <p><strong>Before:</strong> <span id="unshiftBefore"></span></p>
-                <button onclick="arrayUnshift()">Unshift an Element</button>
-                <p id="unshiftResult"></p>
-            </div>
+const passFailSummary = students.map(student => ({
+  name: student.name,
+  passed: student.score >= 80
+}));
+console.log(passFailSummary);
+        </code></pre>
+        <button onclick="runPassFailExample()">Run Example 7</button>
+        <div id="pass-fail-output" class="output"></div>
+    </section>
 
-            <div class="method">
-                <h4>Array join()</h4>
-                <p>The <code>join()</code> method joins all elements of an array into a string.</p>
-                <p><strong>Before:</strong> <span id="joinBefore"></span></p>
-                <button onclick="arrayJoin()">Join Elements</button>
-                <p id="joinResult"></p>
-            </div>
+    <!-- Example 8: Mapping and modifying DOM elements -->
+    <section>
+        <h2>Example 8: Mapping DOM Elements</h2>
+        <p>Extract the text content of all paragraph elements on the page.</p>
+        <pre>
+<code>
+const paragraphs = Array.from(document.querySelectorAll('p'));
+const paragraphTexts = paragraphs.map(p => p.textContent);
+console.log(paragraphTexts);
+        </code></pre>
+        <button onclick="runDOMMappingExample()">Run Example 8</button>
+        <div id="dom-mapping-output" class="output"></div>
+    </section>
 
-            <div class="method">
-                <h4>Array delete()</h4>
-                <p>The <code>delete</code> operator removes an element from an array, leaving an empty slot.</p>
-                <p><strong>Before:</strong> <span id="deleteBefore"></span></p>
-                <button onclick="arrayDelete()">Delete an Element</button>
-                <p id="deleteResult"></p>
-            </div>
+    <footer>
+        <p>Created by Hammam Ahmad Al-Karrad</p>
+    </footer>
 
-            <div class="method">
-                <h4>Array concat()</h4>
-                <p>The <code>concat()</code> method is used to merge two or more arrays.</p>
-                <p><strong>Before:</strong> <span id="concatBefore"></span></p>
-                <button onclick="arrayConcat()">Concat Arrays</button>
-                <p id="concatResult"></p>
-            </div>
+    <script>
+        // Example 1: Basic Transformation
+        function runBasicTransformation() {
+            const numbers = [1, 2, 3];
+            const doubled = numbers.map(num => num * 2);
+            document.getElementById('basic-transformation-output').innerText = `Output: ${doubled.join(', ')}`;
+        }
 
-            <div class="method">
-                <h4>Array flat()</h4>
-                <p>The <code>flat()</code> method flattens an array of arrays into a single array.</p>
-                <p><strong>Before:</strong> <span id="flatBefore"></span></p>
-                <button onclick="arrayFlat()">Flatten Array</button>
-                <p id="flatResult"></p>
-            </div>
-        </section>
+        // Example 2: Using Index in map()
+        function runIndexedTransformation() {
+            const numbers = [10, 20, 30];
+            const indexed = numbers.map((num, index) => num + index);
+            document.getElementById('indexed-transformation-output').innerText = `Output: ${indexed.join(', ')}`;
+        }
 
-        <!-- New section with comparison tables -->
+        // Example 3: Accessing the Entire Array in map()
+        function runOriginalArrayTransformation() {
+            const numbers = [1, 2, 3];
+            const summedWithArray = numbers.map((num, index, arr) => num + arr[0]);
+            document.getElementById('original-array-output').innerText = `Output: ${summedWithArray.join(', ')}`;
+        }
 
-        <section>
-            <h3>Comparison of Array Methods</h3>
+        // Example 4: Processing Object Data
+        function runProductDiscountExample() {
+            const products = [
+                { name: 'Laptop', price: 1000 },
+                { name: 'Phone', price: 500 },
+                { name: 'Tablet', price: 300 }
+            ];
+            const discounted = products.map(product => ({
+                name: product.name,
+                discountedPrice: product.price * 0.9
+            }));
+            const output = discounted.map(product => `Name: ${product.name}, Discounted Price: $${product.discountedPrice.toFixed(2)}`).join('\n');
+            document.getElementById('discounted-products-output').innerText = `Discounted Products:\n${output}`;
+        }
 
-            <!-- Table 1: Comparison between shift(), pop(), and delete() -->
-            <h4>Table 1: Differences between <code>shift()</code>, <code>pop()</code>, and <code>delete()</code></h4>
-            <table border="1" cellpadding="10" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Method</th>
-                        <th>Description</th>
-                        <th>Effect on Array</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>shift()</code></td>
-                        <td>Removes the first element of the array and shifts the remaining elements to the left.</td>
-                        <td>The length of the array is reduced by 1. No gaps.</td>
-                    </tr>
-                    <tr>
-                        <td><code>pop()</code></td>
-                        <td>Removes the last element of the array.</td>
-                        <td>The length of the array is reduced by 1. No gaps.</td>
-                    </tr>
-                    <tr>
-                        <td><code>delete</code></td>
-                        <td>Removes the element at a specific index but leaves <code>undefined</code> in its place.</td>
-                        <td>The length of the array remains the same, but there may be empty slots in the array.</td>
-                    </tr>
-                </tbody>
-            </table>
+        // Example 5: Object Mapping
+        function runObjectMapping() {
+            const users = [
+                { name: 'Homam', age: 25 },
+                { name: 'Ahmad', age: 22 },
+                { name: 'Osama', age: 30 }
+            ];
+            const userNames = users.map(user => user.name);
+            document.getElementById('object-mapping-output').innerText = `Output: ${userNames.join(', ')}`;
+        }
 
-            <!-- Table 2: Comparison between shift() and push() -->
-            <h4>Table 2: Differences between <code>shift()</code> and <code>push()</code></h4>
-            <table border="1" cellpadding="10" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Method</th>
-                        <th>Description</th>
-                        <th>Effect on Array</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>shift()</code></td>
-                        <td>Removes the first element of the array and shifts the remaining elements to the left.</td>
-                        <td>The length of the array is reduced by 1. The first element is removed.</td>
-                    </tr>
-                    <tr>
-                        <td><code>push()</code></td>
-                        <td>Adds one or more elements to the end of the array.</td>
-                        <td>The length of the array is increased by the number of elements added. New elements are added at the end.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        // Example 6: Number Operations
+        function runNumberOperations() {
+            const numbers = [1, 2, 3, 4, 5];
+            const doubled = numbers.map(number => number * 2);
+            document.getElementById('number-operations-output').innerText = `Output: ${doubled.join(', ')}`;
+        }
 
-    </div>
+        function runPassFailExample() {
+            const students = [
+                { name: 'Homam', score: 85 },
+                { name: 'Ahmad', score: 75 },
+                { name: 'Osama', score: 90 }
+            ];
+            const passFailSummary = students.map(student => ({
+                name: student.name,
+                passed: student.score >= 80 ? "passed" : "failed"
+            }));
+            const output = passFailSummary.map(s => `${s.name} : ${s.passed}`).join('\n');
+            document.getElementById('pass-fail-output').innerText = `Pass/Fail Summary:\n${output}`;
+        }
 
-    <script src="script.js"></script>
+        // Example 8: Mapping DOM Elements
+        function runDOMMappingExample() {
+            const paragraphs = Array.from(document.querySelectorAll('p'));
+            const paragraphTexts = paragraphs.map(p => p.textContent);
+            document.getElementById('dom-mapping-output').innerText = `Paragraph Texts: ${paragraphTexts.join(', ')}`;
+        }
+    </script>
 </body>
 </html>
