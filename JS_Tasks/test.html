@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merged Tasks</title>
+    <style>
+        /* Task 1 - Hover effect */
+        #hoverText {
+            font-size: 24px;
+            padding: 10px;
+            transition: background-color 0.3s, font-weight 0.3s;
+        }
+
+            #hoverText:hover {
+                background-color: yellow;
+                font-weight: bold;
+            }
+
+        /* Task 2 - Flag display */
+        #flag {
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+
+        /* Task 3 - Error message styling */
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        /* Task 4 - Show/Hide Content */
+        .content {
+            display: none;
+            margin: 10px 0;
+        }
+
+        /* Task 6 - Color animation */
+        @keyframes colorChange {
+            0% {
+                background-color: blue;
+            }
+
+            50% {
+                background-color: red;
+            }
+
+            100% {
+                background-color: blue;
+            }
+        }
+
+        #animatedBox {
+            width: 100px;
+            height: 100px;
+            animation: colorChange 5s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Task 1 - Hover effect -->
+    <h2>Task 1: Hover Effect</h2>
+    <div id="hoverText">Hello world!</div>
+
+    <hr>
+
+    <!-- Task 2 - Country Flag Selector -->
+    <h2>Task 2: Country Flag Selector</h2>
+    <select id="countrySelect" onchange="showFlag()">
+        <option value="none">--Select a country--</option>
+        <option value="norway">Norway</option>
+        <option value="germany">Germany</option>
+        <option value="france">France</option>
+        <option value="japan">Japan</option>
+    </select>
+    <img id="flag" src="" alt="Flag will appear here" />
+
+    <hr>
+
+    <!-- Task 3 - Password Validation -->
+    <h2>Task 3: Password Validation</h2>
+    <form id="passwordForm" oninput="validatePassword()">
+        <label for="password">Password (min 6 characters):</label>
+        <input type="password" id="password" name="password" required>
+        <span id="passwordError" class="error"></span>
+        <br><br>
+
+        <label for="confirmPassword">Repeat password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <span id="confirmError" class="error"></span>
+        <br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <hr>
+
+    <!-- Task 4 - Show/Hide Content -->
+    <h2>Task 4: Show/Hide Content</h2>
+
+    <div>
+        <h3>What is lorem ipsum? <button onclick="toggleContent('content1')">Show</button></h3>
+        <div id="content1" class="content">
+            Lorem ipsum is simply dummy text of the printing and typesetting industry.
+        </div>
+    </div>
+
+    <div>
+        <h3>Why do we use it? <button onclick="toggleContent('content2')">Show</button></h3>
+        <div id="content2" class="content">
+            It is a long established fact that a reader will be distracted by the readable content of a page.
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Task 5 - Text Formatting -->
+    <h2>Task 5: Text Formatting</h2>
+    <div>
+        <select id="fontType" onchange="applyFormatting()">
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+        </select>
+
+        <select id="fontSize" onchange="applyFormatting()">
+            <option value="12px">12pt</option>
+            <option value="14px">14pt</option>
+            <option value="16px">16pt</option>
+        </select>
+
+        <input type="checkbox" id="bold" onchange="applyFormatting()"> Bold
+        <input type="checkbox" id="italic" onchange="applyFormatting()"> Italic
+        <input type="checkbox" id="underline" onchange="applyFormatting()"> Underline
+    </div>
+
+    <textarea id="textBox" style="width: 100%; height: 100px;">The quick brown fox jumps over the lazy dog</textarea>
+
+    <hr>
+
+    <!-- Task 6 - Color Animation -->
+    <h2>Task 6: Color Animation</h2>
+    <div id="animatedBox"></div>
+
+    <script>
+        // Task 2 - Show flag based on selected country
+        function showFlag() {
+            const country = document.getElementById("countrySelect").value;
+            const flagImg = document.getElementById("flag");
+
+            switch (country) {
+                case 'norway':
+                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg';
+                    break;
+                case 'germany':
+                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg';
+                    break;
+                case 'france':
+                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg';
+                    break;
+                case 'japan':
+                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg';
+                    break;
+                default:
+                    flagImg.src = '';
+            }
+        }
+
+        // Task 3 - Validate password
+        function validatePassword() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const passwordError = document.getElementById("passwordError");
+            const confirmError = document.getElementById("confirmError");
+
+            passwordError.textContent = '';
+            confirmError.textContent = '';
+
+            if (password.length > 0 && password.length < 6) {
+                passwordError.textContent = 'Too short';
+            }
+
+            if (password !== confirmPassword && confirmPassword.length > 0) {
+                confirmError.textContent = "The two passwords don't match";
+            }
+        }
+
+        // Task 4 - Show/Hide content
+        function toggleContent(contentId) {
+            const content = document.getElementById(contentId);
+            const button = content.previousElementSibling.querySelector('button');
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                button.textContent = 'Hide';
+            } else {
+                content.style.display = 'none';
+                button.textContent = 'Show';
+            }
+        }
+
+        // Task 5 - Text formatting
+        function applyFormatting() {
+            const textBox = document.getElementById('textBox');
+            const fontType = document.getElementById('fontType').value;
+            const fontSize = document.getElementById('fontSize').value;
+            const isBold = document.getElementById('bold').checked;
+            const isItalic = document.getElementById('italic').checked;
+            const isUnderline = document.getElementById('underline').checked;
+
+            textBox.style.fontFamily = fontType;
+            textBox.style.fontSize = fontSize;
+            textBox.style.fontWeight = isBold ? 'bold' : 'normal';
+            textBox.style.fontStyle = isItalic ? 'italic' : 'normal';
+            textBox.style.textDecoration = isUnderline ? 'underline' : 'none';
+        }
+    </script>
+
+</body>
+</html>
