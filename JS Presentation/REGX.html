@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regular Expressions (Regex) Explained</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .code {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+
+        .interactive {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        label, input, button {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input, button {
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Understanding Regular Expressions (Regex)</h1>
+    </header>
+
+    <section>
+        <h2>What is a Regular Expression?</h2>
+        <p>A <strong>regular expression</strong> (regex) is a sequence of characters that defines a search pattern. It is primarily used for string pattern matching, validation, and text manipulation in various programming languages.</p>
+
+        <h2>Common Regex Patterns</h2>
+        <p>Here are a few commonly used regular expressions:</p>
+
+        <div class="code">
+            <strong>1. Validate an email:</strong><br>
+            <code>/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/</code><br>
+            <em>Explanation:</em> Matches a standard email format.
+        </div>
+
+        <div class="code">
+            <strong>2. Validate a phone number:</strong><br>
+            <code>/^\d{3}-\d{3}-\d{4}$/</code><br>
+            <em>Explanation:</em> Matches a phone number in the format 123-456-7890.
+        </div>
+
+        <div class="code">
+            <strong>3. Validate a URL:</strong><br>
+            <code>/^(https?:\/\/)?([\w\-])+\.{1}[a-zA-Z]{2,}(\/[\w\-]*)*$/</code><br>
+            <em>Explanation:</em> Matches a URL, including optional http/https.
+        </div>
+
+        <div class="code">
+            <strong>4. Validate a date (YYYY-MM-DD):</strong><br>
+            <code>/^\d{4}-\d{2}-\d{2}$/</code><br>
+            <em>Explanation:</em> Matches dates in the format YYYY-MM-DD (e.g., 2023-12-31).
+        </div>
+
+        <div class="code">
+            <strong>5. Match alphanumeric characters:</strong><br>
+            <code>/^[a-zA-Z0-9]+$/</code><br>
+            <em>Explanation:</em> Matches strings containing only letters and numbers.
+        </div>
+
+        <div class="code">
+            <strong>6. Validate a strong password:</strong><br>
+            <code>/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/</code><br>
+            <em>Explanation:</em> Requires at least 8 characters, including a lowercase letter, uppercase letter, number, and special character.
+        </div>
+
+        <div class="code">
+            <strong>7. Match hexadecimal color codes:</strong><br>
+            <code>/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/</code><br>
+            <em>Explanation:</em> Matches a 3- or 6-digit hexadecimal color code (e.g., #FFF or #123ABC).
+        </div>
+
+        <h2>Try Regex Yourself</h2>
+        <div class="interactive">
+            <label for="emailInput">Test Email Validation:</label>
+            <input type="text" id="emailInput" placeholder="e.g. example@email.com">
+            <button onclick="testEmail()">Test Email</button>
+            <div class="result" id="emailResult"></div>
+
+            <label for="urlInput">Test URL Validation:</label>
+            <input type="text" id="urlInput" placeholder="e.g. https://example.com">
+            <button onclick="testURL()">Test URL</button>
+            <div class="result" id="urlResult"></div>
+
+            <label for="passwordInput">Test Password Validation (Strong):</label>
+            <input type="password" id="passwordInput" placeholder="e.g. P@ssw0rd!">
+            <button onclick="testPassword()">Test Password</button>
+            <div class="result" id="passwordResult"></div>
+        </div>
+    </section>
+
+    <script>
+        function testEmail() {
+            const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            const emailInput = document.getElementById('emailInput').value;
+            const result = emailPattern.test(emailInput);
+
+            const emailResult = document.getElementById('emailResult');
+            if (result) {
+                emailResult.innerText = "✅ Valid Email!";
+                emailResult.style.color = "green";
+            } else {
+                emailResult.innerText = "❌ Invalid Email!";
+                emailResult.style.color = "red";
+            }
+        }
+
+        function testURL() {
+            const urlPattern = /^(https?:\/\/)?([\w\-])+\.{1}[a-zA-Z]{2,}(\/[\w\-]*)*$/;
+            const urlInput = document.getElementById('urlInput').value;
+            const result = urlPattern.test(urlInput);
+
+            const urlResult = document.getElementById('urlResult');
+            if (result) {
+                urlResult.innerText = "✅ Valid URL!";
+                urlResult.style.color = "green";
+            } else {
+                urlResult.innerText = "❌ Invalid URL!";
+                urlResult.style.color = "red";
+            }
+        }
+
+        function testPassword() {
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+            const passwordInput = document.getElementById('passwordInput').value;
+            const result = passwordPattern.test(passwordInput);
+
+            const passwordResult = document.getElementById('passwordResult');
+            if (result) {
+                passwordResult.innerText = "✅ Strong Password!";
+                passwordResult.style.color = "green";
+            } else {
+                passwordResult.innerText = "❌ Weak Password!";
+                passwordResult.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
