@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 80px auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+            .form-section.active {
+                display: block;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .form-group input, .form-group select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #218838;
+            }
+
+        .message {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .toggle-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+            .toggle-link:hover {
+                text-decoration: underline;
+            }
+        .form-row {
+            display: flex;
+            gap: 20px; /* Add some space between the fields */
+        }
+
+            .form-row .form-group {
+                flex: 1; /* Make each form group take equal space */
+            }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #218838;
+            }
+
+        .message {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .toggle-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+            .toggle-link:hover {
+                text-decoration: underline;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Section -->
+        <div id="loginSection" class="form-section active">
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="loginUsername">User Name</label>
+                <input type="text" id="loginUsername" name="loginUsername" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+            </div>
+            <button onclick="loginUser()">Login</button>
+            <p id="loginResult" class="message"></p>
+            <span class="toggle-link" onclick="showRegister()">I don't have an account</span>
+        </div>
+        <!-- Register Section -->
+        <div id="registerSection" class="form-section">
+            <h2>Register</h2>
+
+            <!-- First Name and Last Name Side by Side -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input  type="text" id="firstName" name="firstName" style="width: 95%;" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName"  style="width: 95%;"required>
+                </div>
+            </div>
+
+            <!-- Username and Email Side by Side -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="registerUsername" >User Name</label>
+                    <input type="text" id="registerUsername"  style="width: 95%;"name="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" name="registerEmail" style="width: 95%;" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" name="registerPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="registerConfirmPassword">Confirm Password</label>
+                <input type="password" id="registerConfirmPassword" name="registerConfirmPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="university">University</label>
+                <select id="university" name="university" required></select>
+            </div>
+            <button onclick="registerUser()">Register</button>
+            <p id="registerResult" class="message"></p>
+            <span class="toggle-link" onclick="showLogin()">I have an account</span>
+        </div>
+    </div>
+
+    <script>
+        // Array containing Jordanian universities categorized by city
+        const universities = [
+            { city: 'Ajloun', universities: ['Balqa Applied University- Ajloun College', 'Ajloun National University'] },
+            { city: 'Amman', universities: ['Al-Ahliyya Amman University', 'Al-Isra University', 'Al-Zaytoonah University of Jordan', 'Amman Arab University', 'Applied Science Private University', 'German-Jordanian University: Almushaqar campus/Main Campus', 'Princess Sumaya University for Technology', 'University of Jordan'] },
+            // Add the remaining universities here
+        ];
+
+        // Populate university dropdown dynamically
+        const universitySelect = document.getElementById('university');
+        universities.forEach(group => {
+            const optgroup = document.createElement('optgroup');
+            optgroup.label = group.city;
+            group.universities.forEach(university => {
+                const option = document.createElement('option');
+                option.value = university;
+                option.textContent = university;
+                optgroup.appendChild(option);
+            });
+            universitySelect.appendChild(optgroup);
+        });
+
+        // Switch between Register and Login
+        function showLogin() {
+            document.getElementById('registerSection').classList.remove('active');
+            document.getElementById('loginSection').classList.add('active');
+        }
+
+        function showRegister() {
+            document.getElementById('loginSection').classList.remove('active');
+            document.getElementById('registerSection').classList.add('active');
+        }
+
+        // Registration Function
+        function registerUser() {
+            const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+            const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+            let resultMessage = '';
+
+            // Validation
+            if (!username) {
+                resultMessage = '❌ Username is required.';
+            } else if (!emailPattern.test(email)) {
+                resultMessage = '❌ Invalid email format.';
+            } else if (!passwordPattern.test(password)) {
+                resultMessage = '❌ Password must be at least 8 characters long and include an uppercase letter, lowercase letter, a number, and a special character.';
+            } else if (password !== confirmPassword) {
+                resultMessage = '❌ Passwords do not match.';
+            } else {
+                var users = JSON.parse(localStorage.getItem('users')) || [];
+                const userExists = users.some(user => user[0] === username || user[1] === email);
+
+                if (userExists) {
+                    resultMessage = '❌ Username or email already exists.';
+                } else {
+                    // Save to localStorage
+                    users.push([username, email, password]);
+                    localStorage.setItem('users', JSON.stringify(users));
+                    resultMessage = '✅ Registration successful! You can now log in.';
+                }
+            }
+
+            document.getElementById('registerResult').innerText = resultMessage;
+            document.getElementById('registerResult').className = resultMessage.includes('✅') ? 'success' : 'error';
+        }
+
+        // Login Function
+        function loginUser() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            let resultMessage = '';
+
+            const user = users.find(user => user[0] === username && user[2] === password);
+            if (!user) {
+                resultMessage = '❌ Username or password incorrect.';
+            } else {
+                resultMessage = `✅ Welcome back, ${user[0]}! Login successful.`;
+            }
+
+            document.getElementById('loginResult').innerText = resultMessage;
+            document.getElementById('loginResult').className = resultMessage.includes('✅') ? 'success' : 'error';
+        }
+    </script>
+</body>
+</html>
