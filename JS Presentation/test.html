@@ -1,329 +1,175 @@
-﻿﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Management Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="This is a project for managing and displaying events, including an admin dashboard for adding and editing events.">
+    <meta name="keywords" content="events, event management, admin dashboard, add events, edit events">
+    <link rel="icon" href="" type="image/x-icon">
+    <!-- Boxicons link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Register Admin</title>
     <style>
-        /* Reset some default styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .error {
+            border-color: red;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f4f5f7;
-            color: #333;
-        }
-
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 220px; /* Reduced width for better balance with the content */
-            background-color: #fff;
-            padding: 20px; /* Adjusted padding */
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-            .sidebar h2 {
-                font-size: 1.6rem;
-                color: #3c84ff;
-                margin-bottom: 20px;
-                font-weight: bold;
-            }
-
-            .sidebar ul {
-                list-style: none;
-            }
-
-                .sidebar ul li {
-                    margin-bottom: 12px; /* Reduced gap between menu items */
-                    display: flex;
-                    align-items: center;
-                }
-
-                    .sidebar ul li a {
-                        text-decoration: none;
-                        color: #333;
-                        font-weight: 500;
-                        display: flex;
-                        align-items: center;
-                        font-size: 1rem;
-                    }
-
-                        .sidebar ul li a .icon {
-                            width: 20px;
-                            margin-right: 8px;
-                        }
-
-                        .sidebar ul li a:hover {
-                            color: #3c84ff;
-                        }
-
-        /* Top Section */
-        .top-section {
-            background-color: #fff;
-            padding: 15px 25px; /* Adjusted padding for balance */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px; /* Added margin for space */
-        }
-
-            .top-section h1 {
-                font-size: 1.6rem;
-                font-weight: bold;
-            }
-
-            .top-section .buttons {
-                display: flex;
-                gap: 10px; /* Adjusted gap between buttons */
-            }
-
-                .top-section .buttons button {
-                    padding: 10px 15px;
-                    border: none;
-                    border-radius: 6px;
-                    font-weight: bold;
-                    cursor: pointer;
-                }
-
-                .top-section .buttons .edit-btn {
-                    background-color: #fff;
-                    border: 1px solid #ccc;
-                }
-
-                .top-section .buttons .create-btn {
-                    background-color: #3c84ff;
-                    color: #fff;
-                }
-
-                .top-section .buttons .manage-btn {
-                    background-color: #ff9500;
-                    color: #fff;
-                }
-
-        /* Info Cards Section */
-        .info-cards {
-            display: flex;
-            gap: 20px; /* Adjusted gap for spacing between cards */
-            margin-bottom: 20px; /* Added bottom margin */
-        }
-
-        .info-card {
-            flex: 1;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-            .info-card h2 {
-                font-size: 1.4rem;
-                font-weight: bold;
-                margin-bottom: 10px;
-            }
-
-            .info-card p {
-                font-size: 1.2rem;
-                font-weight: 500;
-            }
-
-            .info-card span {
-                font-size: 0.85rem;
-                color: #777;
-            }
-
-        /* Event list */
-        .event-list {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px; /* Increased padding for consistency */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-            .event-list table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-                .event-list table thead {
-                    background-color: #f4f5f7;
-                }
-
-                .event-list table th, .event-list table td {
-                    padding: 12px 15px; /* Increased padding for better spacing */
-                    text-align: left;
-                    border-bottom: 1px solid #eee;
-                }
-
-                .event-list table th {
-                    font-weight: 600;
-                }
-
-                .event-list table td img {
-                    width: 35px;
-                    height: 35px;
-                    border-radius: 50%;
-                    object-fit: cover;
-                }
-
-        /* Actions */
-        .actions {
-            display: flex;
-            gap: 10px; /* Adjusted gap between buttons */
-        }
-
-        .btn {
-            padding: 6px 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-            .btn.edit {
-                background-color: #3c84ff;
-                color: white;
-            }
-
-            .btn.delete {
-                background-color: #ff4d4d;
-                color: white;
-            }
-
-        /* Modal for Create Event */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            border-radius: 8px;
-            z-index: 10;
-        }
-
-            .modal h3 {
-                margin-bottom: 15px;
-                font-size: 1.2rem;
-                font-weight: bold;
-            }
-
-            .modal input[type="text"],
-            .modal input[type="date"],
-            .modal select {
-                width: 100%;
-                padding: 8px;
-                margin-bottom: 15px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                font-size: 1rem;
-            }
-
-            .modal button {
-                width: 100%;
-                padding: 10px;
-                border: none;
-                background-color: #3c84ff;
-                color: white;
-                font-weight: bold;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-
-                .modal button:hover {
-                    background-color: #2c72e1;
-                }
-
-        /* Overlay to dim background when modal appears */
-        .overlay {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 5;
+        .error-message {
+            color: red;
+            font-size: 0.875rem;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h2>UniClubs Hub</h2>
-            <ul>
-                <li><a href="#"><img src="icon.png" class="icon"> Dashboard</a></li>
-                <li><a href="#"><img src="icon.png" class="icon"> Analytics</a></li>
-                <li><a href="#"><img src="icon.png" class="icon"> Messages</a></li>
-                <li><a href="#"><img src="icon.png" class="icon"> Events</a></li>
-                <li><a href="#"><img src="icon.png" class="icon"> Collections</a></li>
-                <li><a href="#"><img src="icon.png" class="icon"> Users</a></li>
-                <li><a href="#"><img src="icon.png" class="icon"> Ranking</a></li>
-                <li><a href="#"><img src="icon.png" class="icon"> Posts</a></li>
-            </ul>
-        </div>
 
-        <!-- Main Content -->
-        <div class="main-content" style="flex-grow: 1; padding: 20px;">
-            <!-- Top Section -->
-            <div class="top-section">
-                <h1>Users Manager</h1>
+    <div class="form-box-register">
+        <header>Sign Up</header>
+
+        <div class="top">
+            <span>Have an account? <a href="login.html">Login</a></span>
+        </div>
+        <form id="registrationForm">
+            <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-user'></i>
+                </span>
+                <input type="text" id="firstName" >
+                <label>First name</label>
+                <span id="firstNameError" class="error-message"></span>
             </div>
 
-           
-            <!-- Event List -->
-            <div class="event-list">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Date </th>
-                            <th>Email</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+            <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-user'></i>
+                </span>
+                <input type="text" id="lastName" >
+                <label>Last name</label>
+                <span id="lastNameError" class="error-message"></span>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-envelope'></i>
+                </span>
+                <input type="email" id="email" >
+                <label>Email</label>
+                <span id="emailError" class="error-message"></span>
             </div>
 
-        </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-lock-alt'></i>
+                </span>
+                <input type="password" id="password" >
+                <label>Password</label>
+                <span id="passwordError" class="error-message"></span>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-lock'></i>
+                </span>
+                <input type="password" id="repeatPassword" >
+                <label>Repeat Password</label>
+                <span id="repeatPasswordError" class="error-message"></span>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
     </div>
 
     <script>
-        const firstName = 'John';
-        const lastName = 'Doe';
-        const email = 'john.doe@example.com';
-        const password = 'password123';
+        const form = document.getElementById('registrationForm');
+        const firstName = document.getElementById('firstName');
+        const lastName = document.getElementById('lastName');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const repeatPassword = document.getElementById('repeatPassword');
 
-        // Initialize userData object
-        const userData = {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-            date: new Date(),
-            isAdmin: false
-        };
-        console.log(userData.date);
+        const firstNameError = document.getElementById('firstNameError');
+        const lastNameError = document.getElementById('lastNameError');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        const repeatPasswordError = document.getElementById('repeatPasswordError');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            clearErrors();  // Clear any previous errors
+
+            let errors = getSignupFormErrors(firstName.value, lastName.value, email.value, password.value, repeatPassword.value);
+
+            if (errors.length > 0) {
+                return false;  // Prevent form submission
+            }
+
+            // If there are no errors, form can be submitted
+            alert('Form submitted successfully');
+        });
+
+        function getSignupFormErrors(firstname, lastname, email, password, repeatPassword) {
+            let errors = [];
+
+            if (!firstname.trim()) {
+                firstNameError.innerText = 'First name is required';
+                firstName.parentElement.classList.add('error');
+                errors.push('First name is required');
+            }
+
+            if (!lastname.trim()) {
+                lastNameError.innerText = 'Last name is required';
+                lastName.parentElement.classList.add('error');
+                errors.push('Last name is required');
+            }
+
+            if (!isValidEmail(email)) {
+                emailError.innerText = 'A valid email is required';
+                email.parentElement.classList.add('error');
+                errors.push('A valid email is required');
+            }
+
+            if (!isValidPassword(password)) {
+                passwordError.innerText = 'Password must be at least 8 characters, contain one uppercase letter, one lowercase letter, one number, and one special character';
+                password.parentElement.classList.add('error');
+                errors.push('Password is invalid');
+            }
+
+            if (!repeatPassword.trim()) {
+                repeatPasswordError.innerText = 'Repeat password is required';
+                repeatPassword.parentElement.classList.add('error');
+                errors.push('Repeat password is required');
+            }
+
+            if (password !== repeatPassword) {
+                repeatPasswordError.innerText = 'Passwords do not match';
+                repeatPassword.parentElement.classList.add('error');
+                errors.push('Passwords do not match');
+            }
+
+            return errors;
+        }
+
+        function isValidEmail(email) {
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return emailPattern.test(email);
+        }
+
+        function isValidPassword(password) {
+            // Password must be at least 8 characters, contain one uppercase letter, one lowercase letter, one number, and one special character
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            return passwordPattern.test(password);
+        }
+
+        function clearErrors() {
+            // Clear error messages and styles
+            firstNameError.innerText = '';
+            lastNameError.innerText = '';
+            emailError.innerText = '';
+            passwordError.innerText = '';
+            repeatPasswordError.innerText = '';
+
+            const inputs = document.querySelectorAll('.input-box');
+            inputs.forEach(input => {
+                input.classList.remove('error');
+            });
+        }
     </script>
+
 </body>
 </html>
