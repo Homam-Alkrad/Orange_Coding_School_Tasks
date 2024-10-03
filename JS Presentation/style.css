@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ff6700;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 36px;
+    letter-spacing: 2px;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h2, h3, h4 {
+    color: #333;
+}
+
+.method {
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: #ff6700;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    button:hover {
+        background-color: #e65c00;
+    }
+
+pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-left: 5px solid #ff6700;
+}
+
+p {
+    margin: 5px 0;
+}
+
+    p#lengthResult, p#toStringResult, p#popResult, p#pushResult, p#shiftResult, p#unshiftResult, p#joinResult, p#deleteResult, p#concatResult, p#flatResult {
+        font-weight: bold;
+        color: #ff6700;
+    }
+
+strong {
+    color: #333;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #ff6700;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+}

@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration & Login Form with Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        section {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .switch-btn {
+            margin-top: 15px;
+            color: #007bff;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Registration & Login Form</h1>
+    </header>
+
+    <section id="registerSection">
+        <h2>Register</h2>
+        <label for="registerUsername">Username:</label>
+        <input type="text" id="registerUsername" placeholder="Enter username">
+
+        <label for="registerEmail">Email:</label>
+        <input type="text" id="registerEmail" placeholder="Enter email">
+
+        <label for="registerPassword">Password:</label>
+        <input type="password" id="registerPassword" placeholder="Enter password">
+
+        <button onclick="registerUser()">Register</button>
+        <div class="result" id="registerResult"></div>
+
+        <div class="switch-btn" onclick="showLogin()">Already have an account? Login here</div>
+    </section>
+
+    <section id="loginSection" class="hidden">
+        <h2>Login</h2>
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" placeholder="Enter username">
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" placeholder="Enter password">
+
+        <button onclick="loginUser()">Login</button>
+        <div class="result" id="loginResult"></div>
+
+        <div class="switch-btn" onclick="showRegister()">Don't have an account? Register here</div>
+    </section>
+
+    <script>// Switch between Register and Login
+    function showLogin() {
+        document.getElementById('registerSection').classList.add('hidden');
+        document.getElementById('loginSection').classList.remove('hidden');
+    }
+
+    function showRegister() {
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('registerSection').classList.remove('hidden');
+    }
+
+    // Registration Function
+    function registerUser() {
+        const username = document.getElementById('registerUsername').value;
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+
+        const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+        let resultMessage = '';
+
+        // Validation
+        if (!username) {
+            resultMessage = '❌ Username is required.';
+        } else if (!emailPattern.test(email)) {
+            resultMessage = '❌ Invalid email format.';
+        } else if (!passwordPattern.test(password)) {
+            resultMessage = '❌ Password must be at least 8 characters long, include an uppercase letter, lowercase letter, a number, and a special character.';
+        } else {
+            // Save to localStorage
+            const user = {
+                username: username,
+                email: email,
+                password: password
+            };
+            localStorage.setItem(username, JSON.stringify(user));
+            resultMessage = '✅ Registration successful! You can now log in.';
+        }
+
+        // Display result message
+        document.getElementById('registerResult').innerText = resultMessage;
+        document.getElementById('registerResult').className = resultMessage.includes('✅') ? 'success' : 'error';
+    }
+
+    // Login Function
+    function loginUser() {
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+
+        const user = JSON.parse(localStorage.getItem(username));
+        let resultMessage = '';
+
+        if (!user) {
+            resultMessage = '❌ Username does not exist.';
+        } else if (user.password !== password) {
+            resultMessage = '❌ Incorrect password.';
+        } else {
+            resultMessage = `✅ Welcome back, ${user.username}! Login successful.`;
+        }
+
+        // Display result message
+        document.getElementById('loginResult').innerText = resultMessage;
+        document.getElementById('loginResult').className = resultMessage.includes('✅') ? 'success' : 'error';
+    }</script>
+
+</body>
+</html>

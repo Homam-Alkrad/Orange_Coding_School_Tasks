@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript map() Method with Objects and Parameters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        pre {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 5px solid #333;
+            white-space: pre-wrap; /* Makes the code snippet wrap lines in mobile view */
+        }
+
+        code {
+            font-family: monospace;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #218838;
+            }
+
+        .output {
+            background-color: #f1f1f1;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JavaScript map() Method</h1>
+        <p>Learn how to use the <code>map()</code> method with various parameters and real-world object data.</p>
+    </header>
+
+    <!-- Example 1: Basic transformation -->
+    <section>
+        <h2>Example 1: Basic Transformation</h2>
+        <p>Transform each element by doubling its value.</p>
+        <pre>
+<code>
+const numbers = [1, 2, 3];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // Output: [2, 4, 6]
+        </code></pre>
+        <button onclick="runBasicTransformation()">Run Example 1</button>
+        <div id="basic-transformation-output" class="output"></div>
+    </section>
+
+    <!-- Example 2: Using index in map() -->
+    <section>
+        <h2>Example 2: Using Index in map()</h2>
+        <p>Add the index to each element's value.</p>
+        <pre>
+<code>
+const numbers = [10, 20, 30];
+const indexed = numbers.map((num, index) => num + index);
+console.log(indexed); // Output: [10, 21, 32]
+        </code></pre>
+        <button onclick="runIndexedTransformation()">Run Example 2</button>
+        <div id="indexed-transformation-output" class="output"></div>
+    </section>
+
+    <!-- Example 3: Using original array in map() -->
+    <section>
+        <h2>Example 3: Accessing the Entire Array in map()</h2>
+        <p>Use the original array to access other elements while processing.</p>
+        <pre>
+<code>
+const numbers = [1, 2, 3];
+const summedWithArray = numbers.map((num, index, arr) => num + arr[0]);
+console.log(summedWithArray); // Output: [2, 3, 4]
+        </code></pre>
+        <button onclick="runOriginalArrayTransformation()">Run Example 3</button>
+        <div id="original-array-output" class="output"></div>
+    </section>
+
+    <!-- Example 4: Using objects with map() -->
+    <section>
+        <h2>Example 4: Processing Object Data</h2>
+        <p>Apply a 10% discount on product prices.</p>
+        <pre>
+<code>
+const products = [
+  { name: 'Laptop', price: 1000 },
+  { name: 'Phone', price: 500 },
+  { name: 'Tablet', price: 300 }
+];
+
+const discounted = products.map(product => ({
+  name: product.name,
+  discountedPrice: product.price * 0.9
+}));
+console.log(discounted);
+        </code></pre>
+        <button onclick="runProductDiscountExample()">Run Example 4</button>
+        <div id="discounted-products-output" class="output"></div>
+    </section>
+
+    <!-- Example 5: Object mapping for properties -->
+    <section>
+        <h2>Example 5: Mapping Object Properties</h2>
+        <p>Extract just the names from an array of user objects.</p>
+        <pre>
+<code>
+const users = [
+  { name: 'Homam', age: 25 },
+  { name: 'Ahmad', age: 22 },
+  { name: 'Osama', age: 30 }
+];
+
+const userNames = users.map(user => user.name);
+console.log(userNames); // Output: ['Homam', 'Ahmad', 'Osama']
+        </code></pre>
+        <button onclick="runObjectMapping()">Run Example 5</button>
+        <div id="object-mapping-output" class="output"></div>
+    </section>
+
+    <!-- Example 6: Number operations with map() -->
+    <section>
+        <h2>Example 6: Performing Mathematical Operations</h2>
+        <p>Double each number in the array.</p>
+        <pre>
+<code>
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(number => number * 2);
+console.log(doubled); // Output: [2, 4, 6, 8, 10]
+        </code></pre>
+        <button onclick="runNumberOperations()">Run Example 6</button>
+        <div id="number-operations-output" class="output"></div>
+    </section>
+
+    <!-- Example 7: Converting objects to a different structure -->
+    <section>
+        <h2>Example 7: Creating New Structures from Objects</h2>
+        <p>Convert student data into a pass/fail summary based on scores.</p>
+        <pre>
+<code>
+const students = [
+  { name: 'Homam', score: 85 },
+  { name: 'Ahmad', score: 75 },
+  { name: 'Osama', score: 90 }
+];
+
+const passFailSummary = students.map(student => ({
+  name: student.name,
+  passed: student.score >= 80
+}));
+console.log(passFailSummary);
+        </code></pre>
+        <button onclick="runPassFailExample()">Run Example 7</button>
+        <div id="pass-fail-output" class="output"></div>
+    </section>
+
+    <!-- Example 8: Mapping and modifying DOM elements -->
+    <section>
+        <h2>Example 8: Mapping DOM Elements</h2>
+        <p>Extract the text content of all paragraph elements on the page.</p>
+        <pre>
+<code>
+const paragraphs = Array.from(document.querySelectorAll('p'));
+const paragraphTexts = paragraphs.map(p => p.textContent);
+console.log(paragraphTexts);
+        </code></pre>
+        <button onclick="runDOMMappingExample()">Run Example 8</button>
+        <div id="dom-mapping-output" class="output"></div>
+    </section>
+
+    <footer>
+        <p>Created by Hammam Ahmad Al-Karrad</p>
+    </footer>
+
+    <script>
+        // Example 1: Basic Transformation
+        function runBasicTransformation() {
+            const numbers = [1, 2, 3];
+            const doubled = numbers.map(num => num * 2);
+            document.getElementById('basic-transformation-output').innerText = `Output: ${doubled.join(', ')}`;
+        }
+
+        // Example 2: Using Index in map()
+        function runIndexedTransformation() {
+            const numbers = [10, 20, 30];
+            const indexed = numbers.map((num, index) => num + index);
+            document.getElementById('indexed-transformation-output').innerText = `Output: ${indexed.join(', ')}`;
+        }
+
+        // Example 3: Accessing the Entire Array in map()
+        function runOriginalArrayTransformation() {
+            const numbers = [1, 2, 3];
+            const summedWithArray = numbers.map((num, index, arr) => num + arr[0]);
+            document.getElementById('original-array-output').innerText = `Output: ${summedWithArray.join(', ')}`;
+        }
+
+        // Example 4: Processing Object Data
+        function runProductDiscountExample() {
+            const products = [
+                { name: 'Laptop', price: 1000 },
+                { name: 'Phone', price: 500 },
+                { name: 'Tablet', price: 300 }
+            ];
+            const discounted = products.map(product => ({
+                name: product.name,
+                discountedPrice: product.price * 0.9
+            }));
+            const output = discounted.map(product => `Name: ${product.name}, Discounted Price: $${product.discountedPrice.toFixed(2)}`).join('\n');
+            document.getElementById('discounted-products-output').innerText = `Discounted Products:\n${output}`;
+        }
+
+        // Example 5: Object Mapping
+        function runObjectMapping() {
+            const users = [
+                { name: 'Homam', age: 25 },
+                { name: 'Ahmad', age: 22 },
+                { name: 'Osama', age: 30 }
+            ];
+            const userNames = users.map(user => user.name);
+            document.getElementById('object-mapping-output').innerText = `Output: ${userNames.join(', ')}`;
+        }
+
+        // Example 6: Number Operations
+        function runNumberOperations() {
+            const numbers = [1, 2, 3, 4, 5];
+            const doubled = numbers.map(number => number * 2);
+            document.getElementById('number-operations-output').innerText = `Output: ${doubled.join(', ')}`;
+        }
+
+        function runPassFailExample() {
+            const students = [
+                { name: 'Homam', score: 85 },
+                { name: 'Ahmad', score: 75 },
+                { name: 'Osama', score: 90 }
+            ];
+            const passFailSummary = students.map(student => ({
+                name: student.name,
+                passed: student.score >= 80 ? "passed" : "failed"
+            }));
+            const output = passFailSummary.map(s => `${s.name} : ${s.passed}`).join('\n');
+            document.getElementById('pass-fail-output').innerText = `Pass/Fail Summary:\n${output}`;
+        }
+
+        // Example 8: Mapping DOM Elements
+        function runDOMMappingExample() {
+            const paragraphs = Array.from(document.querySelectorAll('p'));
+            const paragraphTexts = paragraphs.map(p => p.textContent);
+            document.getElementById('dom-mapping-output').innerText = `Paragraph Texts: ${paragraphTexts.join(', ')}`;
+        }
+    </script>
+</body>
+</html>

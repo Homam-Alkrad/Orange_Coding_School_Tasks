@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is a project for managing and displaying events, including an admin dashboard for adding and editing events.">
+    <meta name="keywords" content="events, event management, admin dashboard, add events, edit events">
+    <link rel="icon" href="" type="image/x-icon">
+    <!-- Boxicons link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Register Admin</title>
+    <style>
+        .error {
+            border-color: red;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.875rem;
+        }
+        .dark{
+            background-color:black;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-box-register">
+        <header>Sign Up</header>
+
+        <div class="top">
+            <span>Have an account? <a href="login.html">Login</a></span>
+        </div>
+        <form id="registrationForm">
+            <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-user'></i>
+                </span>
+                <input type="text" id="firstName">
+                <label>First name</label>
+                <span id="firstNameError" class="error-message">First Name is required</span>
+            </div>
+
+            <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-user'></i>
+                </span>
+                <input type="text" id="lastName">
+                <label>Last name</label>
+                <span id="lastNameError" class="error-message"></span>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-envelope'></i>
+                </span>
+                <input type="email" id="email">
+                <label>Email</label>
+                <span id="emailError" class="error-message"></span>
+            </div>
+
+            <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-lock-alt'></i>
+                </span>
+                <input type="password" id="password">
+                <label>Password</label>
+                <span id="passwordError" class="error-message"></span>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-lock'></i>
+                </span>
+                <input type="password" id="repeatPassword">
+                <label>Repeat Password</label>
+                <span id="repeatPasswordError" class="error-message"></span>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+    </div>
+    <script>
+        // input fields
+        const form = document.getElementById('registrationForm');
+        const firstName = document.getElementById('firstName');
+        const lastName = document.getElementById('lastName');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const repeatPassword = document.getElementById('repeatPassword');
+
+        // span
+        const firstNameError = document.getElementById('firstNameError');
+        const lastNameError = document.getElementById('lastNameError');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        const repeatPasswordError = document.getElementById('repeatPasswordError');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            clearErrors();  // Clear any previous errors
+
+            let errors = getSignupFormErrors(firstName.value, lastName.value, email.value, password.value, repeatPassword.value);
+
+            if (errors.length > 0) {
+                return false;  // Prevent form submission
+            }
+
+            // Save data to local storage
+            saveFormDataToLocalStorage(firstName.value, lastName.value, email.value, password.value);
+
+            // If there are no errors, form can be submitted
+            alert('Form submitted successfully');
+        });
+
+        function getSignupFormErrors(firstname, lastname, email, password, repeatPassword) {
+            let errors = [];
+
+            if (!firstname.trim()) {
+                firstNameError.innerText = 'First name is required';
+                firstName.parentElement.classList.add('error');
+                errors.push('First name is required');
+            }
+
+            if (!lastname.trim()) {
+                lastNameError.innerText = 'Last name is required';
+                lastName.parentElement.classList.add('error');
+                errors.push('Last name is required');
+            }
+
+            if (!isValidEmail(email)) {
+                emailError.innerText = 'A valid email is required';
+                email.parentElement.classList.add('error');
+                errors.push('A valid email is required');
+            }
+
+            if (!isValidPassword(password)) {
+                passwordError.innerText = 'Password must be at least 8 characters, contain one uppercase letter, one lowercase letter, one number, and one special character';
+                password.parentElement.classList.add('error');
+                errors.push('Password is invalid');
+            }
+
+            if (!repeatPassword.trim()) {
+                repeatPasswordError.innerText = 'Repeat password is required';
+                repeatPassword.parentElement.classList.add('error');
+                errors.push('Repeat password is required');
+            }
+
+            if (password !== repeatPassword) {
+                repeatPasswordError.innerText = 'Passwords do not match';
+                repeatPassword.parentElement.classList.add('error');
+                errors.push('Passwords do not match');
+            }
+
+            return errors;
+        }
+
+        function isValidEmail(email) {
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return emailPattern.test(email);
+        }
+
+        function isValidPassword(password) {
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            return passwordPattern.test(password);
+        }
+
+        function clearErrors() {
+            // Clear error messages and styles
+            firstNameError.innerText = '';
+            lastNameError.innerText = '';
+            emailError.innerText = '';
+            passwordError.innerText = '';
+            repeatPasswordError.innerText = '';
+
+            const inputs = document.querySelectorAll('.input-box');
+            inputs.forEach(input => {
+                input.classList.remove('error');
+            });
+        }
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Save data to local storage
+            saveFormDataToLocalStorage(firstName.value, lastName.value, email.value, password.value);
+
+            alert('User registered successfully!');
+        });
+
+        function saveFormDataToLocalStorage(firstname, lastname, email, password) {
+            // Create an object to hold the form data
+            const formData = {
+                firstName: firstname,
+                lastName: lastname,
+                email: email,
+                password: password,
+                date: new Date().toLocaleString(),
+                isAdmin: false
+            };
+
+            // Get existing users from local storage, or initialize an empty array if none exist
+            let users = JSON.parse(localStorage.getItem('formData')) || [];
+
+            // Ensure users is an array
+            if (!Array.isArray(users)) {
+                users = [];
+            }
+
+            users.push(formData);
+            localStorage.setItem('formData', JSON.stringify(users));
+        }
+    </script>
+
+</body>
+</html>
+//___________________________________________________________________________-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+            button:disabled {
+                background-color: #d3d3d3;
+                cursor: not-allowed;
+            }
+    </style>
+</head>
+<body>
+
+    <h2>User Data Table</h2>
+
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Date Registered</th>
+                <th>Admin Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be dynamically added here -->
+        </tbody>
+    </table>
+
+    <script>
+        function loadUserTable() {
+            const userTableBody = document.querySelector("#userTable tbody");
+            userTableBody.innerHTML = ''; // Clear existing rows
+
+            // Load users from localStorage under key 'formData'
+            let users = JSON.parse(localStorage.getItem('formData')) || [];
+
+            // Ensure that users is an array before attempting to loop
+            if (!Array.isArray(users)) {
+                users = [];
+            }
+
+            users.forEach((user, index) => {
+                const row = document.createElement('tr');
+
+                // Add user data in table cells
+                row.innerHTML = `
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.email}</td>
+                    <td>${user.password}</td>
+                    <td>${user.date}</td>
+                    <td>${user.isAdmin ? 'Admin' : 'Not Admin'}</td>
+                    <td>
+                        <button onclick="acceptUser(${index})" ${user.isAdmin ? 'disabled' : ''}>Accept</button>
+                    </td>
+                `;
+
+                userTableBody.appendChild(row);
+            });
+        }
+
+        function acceptUser(index) {
+            let users = JSON.parse(localStorage.getItem('formData'));
+
+            // Ensure that users is an array
+            if (!Array.isArray(users)) {
+                users = [];
+            }
+
+            // Change the admin status of the user
+            users[index].isAdmin = true;
+            localStorage.setItem('formData', JSON.stringify(users));
+
+            // Refresh the table to show the updated admin status
+            loadUserTable();
+        }
+
+        // Load the user table when the page is first opened
+        window.onload = function () {
+            loadUserTable();
+        };
+    </script>
+
+</body>
+</html>

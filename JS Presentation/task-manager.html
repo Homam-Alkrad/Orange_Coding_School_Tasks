@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - Orange Coding School</title>
+    <link rel="stylesheet" href="task-style.css">
+</head>
+<body>
+    <header>
+        <h1>Task Manager Application</h1>
+        <p>Manage your tasks using JavaScript Array Methods</p>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Add Tasks</h2>
+            <input type="text" id="taskInput" placeholder="Enter a new task">
+            <button onclick="addTask()">Add Task to End</button>
+            <button onclick="addTaskToStart()">Add Task to Start</button>
+        </section>
+
+        <section>
+            <h2>Task List</h2>
+            <ul id="taskList"></ul>
+        </section>
+
+        <section>
+            <h2>Task Management</h2>
+            <button onclick="completeLastTask()">Complete Last Task (Pop)</button>
+            <button onclick="completeFirstTask()">Complete First Task (Shift)</button>
+            <button onclick="removeTask()">Delete Specific Task</button>
+        </section>
+
+        <section>
+            <h2>Display Tasks</h2>
+            <button onclick="showTaskList()">Display Tasks as String</button>
+            <p id="taskDisplay"></p>
+        </section>
+    </div>
+
+    <script src="task-script.js"></script>
+</body>
+</html>
