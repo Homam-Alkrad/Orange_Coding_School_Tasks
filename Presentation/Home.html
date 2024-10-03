@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+            .navbar ul {
+                list-style-type: none;
+                display: flex;
+                gap: 20px;
+            }
+
+                .navbar ul li {
+                    display: inline;
+                }
+
+                    .navbar ul li a:hover {
+                        text-decoration: underline;
+                    }
+
+        /* Hero Section */
+        .hero {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+            .hero h1 {
+                font-size: 3em;
+                margin-bottom: 10px;
+            }
+
+            .hero p {
+                font-size: 1.5em;
+            }
+
+        /* Slider Section */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 50px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            font-size: 2em;
+            position: relative;
+        }
+
+        .slider .prev, .slider .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .slider .prev {
+            left: 10px;
+        }
+
+        .slider .next {
+            right: 10px;
+        }
+
+        /* Latest Events Section */
+        .latest-events {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+            .latest-events h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+        .events-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .event-card {
+            flex: 1;
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+            .event-card h3 {
+                margin: 0 0 10px;
+            }
+
+            .event-card p {
+                font-size: 0.9em;
+            }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#">My Event System</a>
+        </div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to the Event Management System</h1>
+        <p>Your one-stop solution for event updates and management</p>
+    </section>
+
+    <!-- Slider Section -->
+    <section class="slider">
+        <div class="slides" id="slides">
+            <div class="slide">Event 1: Upcoming Tech Conference</div>
+            <div class="slide">Event 2: Music Festival</div>
+            <div class="slide">Event 3: Art Exhibition</div>
+        </div>
+        <span class="prev" onclick="prevSlide()">&#10094;</span>
+        <span class="next" onclick="nextSlide()">&#10095;</span>
+    </section>
+
+    <!-- Latest Events Section -->
+    <section class="latest-events">
+        <h2>Latest Events</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <h3>Event 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat diam sit amet dui vestibulum.</p>
+            </div>
+            <div class="event-card">
+                <h3>Event 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat diam sit amet dui vestibulum.</p>
+            </div>
+            <div class="event-card">
+                <h3>Event 3</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat diam sit amet dui vestibulum.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Event Management System. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Slider -->
+    <script>let currentSlide = 0;
+        const slides = document.getElementById('slides');
+        const totalSlides = slides.children.length;
+
+        function showSlide(index) {
+            if (index >= totalSlides) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = index;
+            }
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Automatically move to the next slide every 5 seconds
+        setInterval(nextSlide, 5000);</script>
+</body>
+</html>

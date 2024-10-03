@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f5f7;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px; /* Reduced width for better balance with the content */
+            background-color: #fff;
+            padding: 20px; /* Adjusted padding */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .sidebar h2 {
+                font-size: 1.6rem;
+                color: #3c84ff;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+
+            .sidebar ul {
+                list-style: none;
+            }
+
+                .sidebar ul li {
+                    margin-bottom: 12px; /* Reduced gap between menu items */
+                    display: flex;
+                    align-items: center;
+                }
+
+                    .sidebar ul li a {
+                        text-decoration: none;
+                        color: #333;
+                        font-weight: 500;
+                        display: flex;
+                        align-items: center;
+                        font-size: 1rem;
+                    }
+
+                        .sidebar ul li a .icon {
+                            width: 20px;
+                            margin-right: 8px;
+                        }
+
+                        .sidebar ul li a:hover {
+                            color: #3c84ff;
+                        }
+
+        /* Top Section */
+        .top-section {
+            background-color: #fff;
+            padding: 15px 25px; /* Adjusted padding for balance */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px; /* Added margin for space */
+        }
+
+            .top-section h1 {
+                font-size: 1.6rem;
+                font-weight: bold;
+            }
+
+            .top-section .buttons {
+                display: flex;
+                gap: 10px; /* Adjusted gap between buttons */
+            }
+
+                .top-section .buttons button {
+                    padding: 10px 15px;
+                    border: none;
+                    border-radius: 6px;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+
+                .top-section .buttons .edit-btn {
+                    background-color: #fff;
+                    border: 1px solid #ccc;
+                }
+
+                .top-section .buttons .create-btn {
+                    background-color: #3c84ff;
+                    color: #fff;
+                }
+
+                .top-section .buttons .manage-btn {
+                    background-color: #ff9500;
+                    color: #fff;
+                }
+
+        /* Info Cards Section */
+        .info-cards {
+            display: flex;
+            gap: 20px; /* Adjusted gap for spacing between cards */
+            margin-bottom: 20px; /* Added bottom margin */
+        }
+
+        .info-card {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+            .info-card h2 {
+                font-size: 1.4rem;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .info-card p {
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+
+            .info-card span {
+                font-size: 0.85rem;
+                color: #777;
+            }
+
+        /* Event list */
+        .event-list {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px; /* Increased padding for consistency */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .event-list table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+                .event-list table thead {
+                    background-color: #f4f5f7;
+                }
+
+                .event-list table th, .event-list table td {
+                    padding: 12px 15px; /* Increased padding for better spacing */
+                    text-align: left;
+                    border-bottom: 1px solid #eee;
+                }
+
+                .event-list table th {
+                    font-weight: 600;
+                }
+
+                .event-list table td img {
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+        /* Actions */
+        .actions {
+            display: flex;
+            gap: 10px; /* Adjusted gap between buttons */
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+            .btn.edit {
+                background-color: #3c84ff;
+                color: white;
+            }
+
+            .btn.delete {
+                background-color: #ff4d4d;
+                color: white;
+            }
+
+        /* Modal for Create Event */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            border-radius: 8px;
+            z-index: 10;
+        }
+
+            .modal h3 {
+                margin-bottom: 15px;
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+
+            .modal input[type="text"],
+            .modal input[type="date"],
+            .modal select {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 1rem;
+            }
+
+            .modal button {
+                width: 100%;
+                padding: 10px;
+                border: none;
+                background-color: #3c84ff;
+                color: white;
+                font-weight: bold;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .modal button:hover {
+                    background-color: #2c72e1;
+                }
+
+        /* Overlay to dim background when modal appears */
+        .overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>UniClubs Hub</h2>
+            <ul>
+                <li><a href="#"><img src="icon.png" class="icon"> Dashboard</a></li>
+                <li><a href="#"><img src="icon.png" class="icon"> Analytics</a></li>
+                <li><a href="#"><img src="icon.png" class="icon"> Messages</a></li>
+                <li><a href="#"><img src="icon.png" class="icon"> Events</a></li>
+                <li><a href="#"><img src="icon.png" class="icon"> Collections</a></li>
+                <li><a href="#"><img src="icon.png" class="icon"> Users</a></li>
+                <li><a href="#"><img src="icon.png" class="icon"> Ranking</a></li>
+                <li><a href="#"><img src="icon.png" class="icon"> Posts</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" style="flex-grow: 1; padding: 20px;">
+            <!-- Top Section -->
+            <div class="top-section">
+                <h1>Event Manager</h1>
+                <div class="buttons">
+                    <button class="edit-btn">Edit</button>
+                    <button class="create-btn">Create</button>
+                    <button class="manage-btn">Manage</button>
+                </div>
+            </div>
+
+            <!-- Info Cards -->
+            <div class="info-cards">
+                <div class="info-card">
+                    <h2>Budget</h2>
+                    <p>$11,590.90</p>
+                    <span>Since last month</span>
+                </div>
+                <div class="info-card">
+                    <h2>New Projects</h2>
+                    <p>320</p>
+                    <span>Since last month</span>
+                </div>
+                <div class="info-card">
+                    <h2>Total Hours</h2>
+                    <p>4,100</p>
+                    <span>Since last month</span>
+                </div>
+                <div class="info-card">
+                    <h2>Workload</h2>
+                    <p>88%</p>
+                    <span>Since last month</span>
+                </div>
+            </div>
+
+            <!-- Event List -->
+            <div class="event-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal (bubble) for creating event -->
+    <div class="modal" id="createModal">
+        <h3>Create New Event</h3>
+        <label for="event-name">Event Name</label>
+        <input type="text" id="event-name" placeholder="Enter event name">
+
+        <label for="event-date">Date</label>
+        <input type="date" id="event-date">
+
+        <label for="event-location">University</label>
+        <select id="event-location">
+            <option value="Jadara University">Jadara University</option>
+            <option value="Al-Ahliyya Amman University">Al-Ahliyya Amman University</option>
+            <option value="University of Jordan">University of Jordan</option>
+            <option value="Yarmouk University">Yarmouk University</option>
+        </select>
+
+        <button type="button" id="createEvent">Create Event</button>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="modalOverlay"></div>
+    <script>
+        // Initialize variables
+        const createButton = document.querySelector('.create-btn');
+        const createModal = document.getElementById('createModal');
+        const overlay = document.getElementById('modalOverlay');
+        const createEventButton = document.getElementById('createEvent');
+        const eventListTable = document.querySelector('.event-list tbody');
+
+        // Load existing events from localStorage and display them
+        document.addEventListener('DOMContentLoaded', () => {
+            loadEvents();
+        });
+
+        // Show modal when "Create" button is clicked
+        createButton.addEventListener('click', () => {
+            createModal.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+
+        // Hide modal when clicking overlay or the "Create Event" button
+        overlay.addEventListener('click', () => {
+            closeCreateModal();
+        });
+
+        createEventButton.addEventListener('click', () => {
+            const eventName = document.getElementById('event-name').value;
+            const eventDate = document.getElementById('event-date').value;
+            const eventLocation = document.getElementById('event-location').value;
+
+            if (eventName && eventDate && eventLocation) {
+                const newEvent = {
+                    name: eventName,
+                    date: eventDate,
+                    location: eventLocation,
+                    status: 'Scheduled'
+                };
+
+                saveEvent(newEvent);
+                loadEvents();
+                closeCreateModal();
+            } else {
+                alert("Please fill all fields");
+            }
+        });
+
+        // Close the modal and reset the form
+        function closeCreateModal() {
+            createModal.style.display = 'none';
+            overlay.style.display = 'none';
+            document.getElementById('event-name').value = '';
+            document.getElementById('event-date').value = '';
+            document.getElementById('event-location').value = '';
+        }
+
+        // Save a new event to localStorage
+        function saveEvent(event) {
+            let events = JSON.parse(localStorage.getItem('events')) || [];
+            events.push(event);
+            localStorage.setItem('events', JSON.stringify(events));
+        }
+
+        // Load events from localStorage and display them
+        function loadEvents() {
+            const events = JSON.parse(localStorage.getItem('events')) || [];
+            eventListTable.innerHTML = ''; // Clear existing rows
+            events.forEach((event, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                        <td><img src="empty.png"  > </td>
+                     <td> ${event.name}</td>
+                        <td>${event.date}</td>
+                        <td>${event.location}</td>
+                        <td>${event.status}</td>
+                        <td class="actions">
+                            <button class="btn delete" data-index="${index}">Delete</button>
+                        </td>
+                    `;
+                eventListTable.appendChild(row);
+            });
+
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.btn.delete').forEach((button) => {
+                button.addEventListener('click', (e) => {
+                    const eventIndex = e.target.getAttribute('data-index');
+                    deleteEvent(eventIndex);
+                    loadEvents();
+                });
+            });
+        }
+
+        // Delete an event from localStorage
+        function deleteEvent(index) {
+            let events = JSON.parse(localStorage.getItem('events')) || [];
+            events.splice(index, 1); // Remove the event at the specified index
+            localStorage.setItem('events', JSON.stringify(events)); // Save the updated list
+        }
+    </script>
+
+</body>
+</html>

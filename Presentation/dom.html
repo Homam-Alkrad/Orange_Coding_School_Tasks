@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple ontoggle Events Example with Toggle Button</title>
+    <style>
+        .details-section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Multiple ontoggle Examples with Toggle Button</h2>
+
+    <details id="detailsOne" class="details-section" ontoggle="updateStatus('detailsOneStatus', 'Details 1')">
+        <summary>Click to reveal Details 1</summary>
+        <p>This is the first set of details.</p>
+    </details>
+    <p id="detailsOneStatus">Status: Details 1 are currently closed.</p>
+
+    <details id="detailsTwo" class="details-section" ontoggle="updateStatus('detailsTwoStatus', 'Details 2')">
+        <summary>Click to reveal Details 2</summary>
+        <p>This is the second set of details.</p>
+    </details>
+    <p id="detailsTwoStatus">Status: Details 2 are currently closed.</p>
+
+    <!-- Toggle Button -->
+    <button onclick="toggleDetails()">Toggle All Details</button>
+
+    <script>
+        // Function to update the status of each details element
+        function updateStatus(statusElementId, detailsName) {
+            const detailsElement = document.getElementById(detailsName.replace(' ', ''));
+            const statusElement = document.getElementById(statusElementId);
+
+            if (detailsElement.open) {
+                statusElement.innerText = `Status: ${detailsName} are currently open.`;
+            } else {
+                statusElement.innerText = `Status: ${detailsName} are currently closed.`;
+            }
+        }
+
+        // Function to toggle the details sections
+        function toggleDetails() {
+            const detailsOne = document.getElementById('detailsOne');
+            const detailsTwo = document.getElementById('detailsTwo');
+
+            // Toggle both details sections based on their current state
+            detailsOne.open = !detailsOne.open;
+            detailsTwo.open = !detailsTwo.open;
+
+            // Update the status text accordingly
+            updateStatus('detailsOneStatus', 'Details 1');
+            updateStatus('detailsTwoStatus', 'Details 2');
+        }
+    </script>
+
+</body>
+</html>
