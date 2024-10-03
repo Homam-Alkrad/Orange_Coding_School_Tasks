@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C# Concepts Explained</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        section {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #263238; /* Darker background for code block */
+            padding: 10px;
+            border-left: 3px solid #333;
+            overflow-x: auto;
+            font-size: 1rem;
+            color: #ffcc80; /* Text color for code block */
+        }
+
+        code {
+            color: #ffcc80; /* Text color inside inline code */
+        }
+
+        ul {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+            footer a {
+                color: #ffab00;
+                text-decoration: none;
+            }
+
+        li code, p code {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Learn C# with Code Examples</h1>
+    </header>
+
+    <main>
+
+        <section id="data-types">
+            <h2> C# Data Types</h2>
+            <p>C# offers several data types, such as:</p>
+            <ul>
+                <li><code>int</code>: integer numbers</li>
+                <li><code>double</code>: floating-point numbers</li>
+                <li><code>bool</code>: true or false</li>
+                <li><code>string</code>: text</li>
+            </ul>
+        </section>
+
+
+        <section id="casting">
+            <h2>1. Casting Types</h2>
+
+            <p>You can cast between compatible data types. There are two types of casting: <strong>implicit</strong> (automatic) and <strong>explicit</strong> (manual).</p>
+
+            <h3>1. Explicit Casting</h3>
+            <p>Explicit casting is needed when converting from a larger type to a smaller type, as there is potential for data loss:</p>
+            <pre><code>double d = 9.8;
+int i = (int)d; // Explicit casting</code></pre>
+            <p><b>Output:</b> <code>i</code> is now <strong>9</strong> (decimal part is truncated).</p>
+
+            <h3>2. Implicit Casting</h3>
+            <p>Implicit casting is done automatically when converting from a smaller type to a larger type (e.g., <code>int</code> to <code>double</code>):</p>
+            <pre><code>int num = 10;
+double d = num; // Implicit casting (int to double)</code></pre>
+            <p><b>Output:</b> <code>d</code> is now <strong>10.0</strong> (integer is promoted to a floating-point).</p>
+
+            <h3>3. Using Convert Methods</h3>
+            <p>You can also use the <code>Convert</code> class to cast types, especially for converting between incompatible types:</p>
+            <pre><code>string str = "123";
+int num = Convert.ToInt32(str); // Using Convert class</code></pre>
+            <p><b>Output:</b> <code>num</code> becomes <strong>123</strong> (converted from a string).</p>
+
+            <h3>4. Casting Between Numeric Types</h3>
+            <p>You can cast between other numeric types, such as <code>float</code>, <code>double</code>, and <code>long</code>:</p>
+            <pre><code>float f = 5.75F;
+double d = f; // Implicit casting (float to double)
+long l = (long)f; // Explicit casting (float to long)</code></pre>
+            <p><b>Output:</b> <code>d</code> is <strong>5.75</strong>, and <code>l</code> is <strong>5</strong> (fractional part removed).</p>
+
+            <h3>5. Casting Between Non-Primitive Types</h3>
+            <p>You can also cast between non-primitive types, such as objects:</p>
+            <pre><code>object obj = "Hello";
+string str = (string)obj; // Casting an object to a string</code></pre>
+            <p><b>Output:</b> <code>str</code> is now <strong>"Hello"</strong>.</p>
+
+            <h3>6. Handling Invalid Casts</h3>
+            <p>Be cautious when casting. If the types are incompatible, an exception will occur. For instance:</p>
+            <pre><code>string str = "abc";
+int num = Convert.ToInt32(str); // Throws an exception: FormatException</code></pre>
+            <p><b>Note:</b> Always ensure the type you're casting is compatible, or use try-catch for safe conversions.</p>
+        </section>
+
+        <section id="conversion-methods">
+            <h2>2. Using Conversion Methods</h2>
+            <p>C# has built-in methods for converting data types:</p>
+            <pre><code>int num = Convert.ToInt32("123");</code></pre>
+            <p><b>Output:</b> <code>num</code> becomes <strong>123</strong> (converted from a string).</p>
+        </section>
+
+        <section id="user-input">
+            <h2>7. User Input (Read and Write)</h2>
+
+            <!-- Basic input and output using Console.ReadLine() and Console.WriteLine() -->
+            <p>To read user input, use <code>Console.ReadLine()</code> and to output, use <code>Console.WriteLine()</code>:</p>
+            <pre><code>Console.WriteLine("Enter your name:");
+string name = Console.ReadLine();
+Console.WriteLine("Hello, " + name);</code></pre>
+            <p><b>Output:</b> Greets the user by name.</p>
+
+            <h3>Using String Format</h3>
+            <p>You can also format strings using <code>String Format</code> to make your output more readable:</p>
+            <pre><code>Console.WriteLine("Enter your age:");
+int age = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Hello {0}, you are {1} years old.", name, age);</code></pre>
+            <p><b>Output:</b> Outputs: <em>Hello [name], you are [age] years old.</em></p>
+
+            <h3>Using String Interpolation (with $)</h3>
+            <p>String interpolation allows you to include variables directly inside a string with the <code>$</code> symbol:</p>
+            <pre><code>Console.WriteLine($"Hello {name}, you are {age} years old.");</code></pre>
+            <p><b>Output:</b> Outputs the same result as <code>String Format</code>, but with simpler syntax: <em>Hello [name], you are [age] years old.</em></p>
+        </section>
+
+        <section id="arithmetic-operators">
+            <h2>3. Arithmetic Operators</h2>
+            <p>C# supports basic arithmetic operators:</p>
+            <ul>
+                <li>Addition: <code>a + b</code></li>
+                <li>Subtraction: <code>a - b</code></li>
+                <li>Multiplication: <code>a * b</code></li>
+                <li>Division: <code>a / b</code></li>
+            </ul>
+            <pre><code>int sum = 5 + 3; // Output: 8</code></pre>
+        </section>
+
+        <section id="assignment-operators">
+            <h2>4. Assignment Operators</h2>
+            <p>Assignment operators are used to assign values:</p>
+            <pre><code>int x = 5;
+x += 2;  // Output: 7</code></pre>
+        </section>
+
+        <section id="comparison-operators">
+            <h2>10. Comparison and Logical Operators</h2>
+            <p>Comparison operators compare values, and logical operators combine conditions:</p>
+            <ul>
+                <li>Equal: <code>a == b</code></li>
+                <li>Not equal: <code>a != b</code></li>
+                <li>And: <code>a && b</code></li>
+                <li>Or: <code>a || b</code></li>
+            </ul>
+            <pre><code>bool result = (5 == 5) && (3 < 4);  // Output: true</code></pre>
+        </section>
+        <section id="array">
+            <h2>5. Declaring and Initializing an Array</h2>
+
+            <!-- Simple declaration -->
+            <p>To declare an array in C#, specify the type followed by square brackets:</p>
+            <pre><code>int[] numbers;</code></pre>
+            <p>This only declares the array but does not initialize it. To initialize it, you can assign values like so:</p>
+
+            <!-- Declaration and initialization together -->
+            <pre><code>numbers = new int[] { 1, 2, 3, 4, 5 };</code></pre>
+            <p><b>Output:</b> An array of integers initialized with values 1 to 5.</p>
+
+            <!-- Declare and initialize inline -->
+            <p>You can also declare and initialize the array in one line:</p>
+            <pre><code>int[] numbers = { 1, 2, 3, 4, 5 };</code></pre>
+
+            <h3>User-Defined Array Size</h3>
+            <p>You can ask the user to define the size of the array and then populate it:</p>
+            <pre><code>Console.WriteLine("Enter the size of the array:");
+int size = Convert.ToInt32(Console.ReadLine());
+int[] userArray = new int[size];</code></pre>
+            <p>This initializes an array where the size is determined by the user.</p>
+
+            <h3>Filling the Array</h3>
+            <p>Once the array is declared with a user-defined size, you can fill it with values:</p>
+            <pre><code>for (int i = 0; i < size; i++) {
+    Console.WriteLine($"Enter value for index {i}:");
+    userArray[i] = Convert.ToInt32(Console.ReadLine());
+}</code></pre>
+            <p><b>Output:</b> The array is filled with the user-entered values.</p>
+
+            <h3>Displaying the Array</h3>
+            <p>After the array is filled, you can display its values:</p>
+            <pre><code>Console.WriteLine("Your array contains:");
+for (int i = 0; i < size; i++) {
+    Console.WriteLine(userArray[i]);
+}</code></pre>
+            <p><b>Output:</b> Displays the elements of the user-defined array.</p>
+        </section>
+
+        <section id="access-element">
+            <h2>7. Accessing Array Elements</h2>
+            <p>To access an element, use the index of the array:</p>
+            <pre><code>int firstElement = numbers[0];</code></pre>
+            <p><b>Output:</b> The first element is <strong>1</strong> (index starts from 0).</p>
+        </section>
+
+        <section id="change-element">
+            <h2>3. Changing Array Elements</h2>
+            <p>You can change an element by assigning a new value:</p>
+            <pre><code>numbers[2] = 10;</code></pre>
+            <p><b>Output:</b> The third element (index 2) becomes <strong>10</strong>.</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Happy Coding! Learn more about <a href="https://learn.microsoft.com/en-us/dotnet/csharp/">C# here</a>.</p>
+    </footer>
+</body>
+</html>
