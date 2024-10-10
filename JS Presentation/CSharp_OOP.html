@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object-Oriented Programming in C#</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        section {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #263238; /* Darker background for code block */
+            padding: 10px;
+            border-left: 3px solid #333;
+            overflow-x: auto;
+            font-size: 1rem;
+            color: #ffcc80; /* Text color for code block */
+        }
+
+        code {
+            color: #ffcc80; /* Text color inside inline code */
+        }
+
+        ul {
+            margin-bottom: 10px;
+        }
+                table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+        footer a {
+            color: #ffab00;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Object-Oriented Programming in C#</h1>
+    </header>
+    
+    <main>
+        
+     <section id="encapsulation">
+            <h2>4. Encapsulation</h2>
+            <p>Encapsulation is the practice of restricting access to certain components and only exposing necessary parts. This is usually done with access modifiers:</p>
+            <pre><code>class Account {
+    public string Email { get; set; }
+    public string UserName { get; set; }
+    private string _password;
+
+    public void SetPassword(string password)
+    {
+        // You can add password validation logic here
+        if (!string.IsNullOrEmpty(password))
+        {
+            _password = password;
+        }
+    }
+}
+
+Account account = new Account();
+account.Email = "user@example.com";
+account.UserName = "username";
+account.SetPassword("securePassword123");
+Console.WriteLine(account.Email); // Output: user@example.com
+Console.WriteLine(account.UserName); // Output: username
+// Password is private and cannot be accessed directly.
+</code></pre>
+            <p><b>Output:</b> The password property is encapsulated, allowing controlled access through the <code>SetPassword</code> method, which ensures that the password is handled securely without exposing it directly.</p>
+        </section>
+        <!-- Sealed Class Section -->
+        <section id="sealed-class">
+            <h2>1. Sealed Class</h2>
+            <p>A <code>sealed</code> class cannot be inherited. This is useful for restricting inheritance where it isn't needed:</p>
+            <pre><code>sealed class MySealedClass {
+    public void Display() {
+        Console.WriteLine("This is a sealed class.");
+    }
+}
+
+// Trying to inherit from MySealedClass will cause a compilation error
+// class DerivedClass : MySealedClass { } // Error
+</code></pre>
+            <p><b>Output:</b> A compilation error will occur if inheritance is attempted.</p>
+        </section>
+
+             <!-- Polymorphism Section -->
+        <section id="polymorphism">
+            <h2>2. Polymorphism (Overloading and Overriding)</h2>
+            <p>Polymorphism is one of the most important concepts in OOP. It describes the ability of something to have or to be displayed in more than one form. The different forms arise because these entities can be assigned different meanings and used in various ways in multiple contexts.</p>
+            
+            <!-- Method Overloading -->
+            <h3>Method Overloading</h3>
+            <p>Method overloading allows multiple methods with the same name but different parameters:</p>
+            <pre><code>using System;
+using System.Collections.Generic;
+
+public class Employee
+{
+    public string Name { get; set; }
+
+    public virtual double CalculateDiscount(double purchaseAmount)
+    {
+        // Base discount for any employee
+        return purchaseAmount * 0.05; // 5% discount
+    }
+
+    public virtual void DisplayInfo()
+    {
+        Console.WriteLine($"Employee: {Name}");
+    }
+}
+
+public class Manager : Employee
+{
+    public override double CalculateDiscount(double purchaseAmount)
+    {
+        // Managers get a higher discount
+        return purchaseAmount * 0.20; // 20% discount
+    }
+
+    public override void DisplayInfo()
+    {
+        Console.WriteLine($"Manager: {Name}");
+    }
+}
+
+public class TeamLeader : Employee
+{
+    public override double CalculateDiscount(double purchaseAmount)
+    {
+        // Team Leaders get a moderate discount
+        return purchaseAmount * 0.15; // 15% discount
+    }
+
+    public override void DisplayInfo()
+    {
+        Console.WriteLine($"Team Leader: {Name}");
+    }
+}
+
+public class Staff : Employee
+{
+    // Inherits the base discount (5%)
+    public override void DisplayInfo()
+    {
+        Console.WriteLine($"Staff: {Name}");
+    }
+}
+
+public class Intern : Employee
+{
+    public override double CalculateDiscount(double purchaseAmount)
+    {
+        // Interns get a minimal discount
+        return purchaseAmount * 0.02; // 2% discount
+    }
+
+    public override void DisplayInfo()
+    {
+        Console.WriteLine($"Intern: {Name}");
+    }
+}
+
+public class Company
+{
+    static void Main(string[] args)
+    {
+        List<Employee> employees = new List<Employee>
+        {
+            new Manager { Name = "Alice" },
+            new TeamLeader { Name = "Bob" },
+            new Staff { Name = "Charlie" },
+            new Intern { Name = "Daisy" },
+            new Employee { Name = "Eve" } // General employee
+        };
+
+        double purchaseAmount = 500.00; // Purchase amount
+
+        foreach (Employee emp in employees)
+        {
+            emp.DisplayInfo();
+            double discount = emp.CalculateDiscount(purchaseAmount);
+            double finalAmount = purchaseAmount - discount;
+
+            Console.WriteLine($"Purchase Amount: ${purchaseAmount:F2}");
+            Console.WriteLine($"Discount: ${discount:F2}");
+            Console.WriteLine($"Amount to Pay: ${finalAmount:F2}");
+            Console.WriteLine(new string('-', 30));
+        }
+    }
+}
+</code></pre>
+            <p><b>Output:</b> Demonstrates polymorphism by method overloading.</p>
+
+            <!-- Method Overriding -->
+            <h3>Method Overriding</h3>
+            <p>Method overriding allows a derived class to provide a specific implementation of a method declared in the base class:</p>
+            <pre><code>class BaseClass {
+    public virtual void Display() {
+        Console.WriteLine("Base class display.");
+    }
+}
+
+class DerivedClass : BaseClass {
+    public override void Display() {
+        Console.WriteLine("Derived class display.");
+    }
+}
+
+BaseClass obj = new DerivedClass();
+obj.Display();  // Output: Derived class display.
+</code></pre>
+            <p><b>Output:</b> The derived class overrides the base class method implementation.</p>
+        </section>
+                <!-- Abstract Class vs Interface Section -->
+        <section id="abstract-vs-interface">
+            <h2>5. Method Overloading vs Method Overriding</h2>
+            <p>The following table shows the differences between method overloading and method overriding:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Method Overloading</th>
+                        <th>Method Overriding</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Definition</td>
+                        <td>Multiple methods in the same class with the same name but different parameters.</td>
+                        <td>A derived class provides a specific implementation of a method already defined in its base class.</td>
+                    </tr>
+                    <tr>
+                        <td>Inheritance Requirement</td>
+                        <td>Not required. Methods can be in the same class.</td>
+                        <td>Required. The method must be inherited from a base class.</td>
+                    </tr>
+                    <tr>
+                        <td>Method Signature</td>
+                        <td>Must have different parameter lists (number or type of parameters).</td>
+                        <td>Must have the same method signature as the base class method.</td>
+                    </tr>
+                    <tr>
+                        <td>Access Modifiers</td>
+                        <td>Can have any access modifier.</td>
+                        <td>The overriding method must have the same or less restrictive access modifier.</td>
+                    </tr>
+                    <tr>
+                        <td>Purpose</td>
+                        <td>To achieve compile-time polymorphism.</td>
+                        <td>To achieve runtime polymorphism.</td>
+                    </tr>
+                    <tr>
+                        <td>Annotation (in C#)</td>
+                        <td>No special annotation required.</td>
+                        <td>Uses the <code>override</code> keyword.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Abstraction Section -->
+        <section id="abstraction">
+            <h2>3. Abstraction</h2>
+            <p>Abstraction hides complex implementation details and only shows the essential features. It's achieved through abstract classes or interfaces:</p>
+            <pre><code>abstract class Animal {
+    public abstract void MakeSound();
+    public void Sleep() {
+        Console.WriteLine("Sleeping...");
+    }
+}
+
+class Dog : Animal {
+    public override void MakeSound() {
+        Console.WriteLine("Woof!");
+    }
+}
+
+Animal myDog = new Dog();
+myDog.MakeSound(); // Output: Woof!
+myDog.Sleep(); // Output: Sleeping...
+</code></pre>
+            <p><b>Output:</b> Shows only essential details, hiding implementation in the base abstract class.</p>
+        </section>
+
+        <!-- Abstract Class Section -->
+        <section id="abstract-class">
+            <h2>5. Abstract Class</h2>
+            <p>An abstract class is a class that cannot be instantiated on its own and must be inherited by a derived class. It can contain abstract methods and concrete methods:</p>
+            <pre><code>abstract class Shape {
+    public abstract double Area();
+    public void Show() {
+        Console.WriteLine("This is a shape.");
+    }
+}
+
+class Circle : Shape {
+    public double Radius { get; set; }
+    
+    public Circle(double radius) {
+        Radius = radius;
+    }
+
+    public override double Area() {
+        return Math.PI * Radius * Radius;
+    }
+}
+
+Shape myCircle = new Circle(5);
+myCircle.Show(); // Output: This is a shape.
+Console.WriteLine(myCircle.Area()); // Output: 78.54 (area of the circle)
+</code></pre>
+            <p><b>Output:</b> The abstract class provides a base for derived classes to implement specific functionality.</p>
+        </section>
+                <!-- Abstract Class vs Interface Section -->
+        <section id="abstract-vs-interface">
+            <h2>5. Abstract Class vs Interface</h2>
+            <p>The following table shows the differences between an abstract class and an interface:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Abstract Class</th>
+                        <th>Interface</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Multiple Inheritance</td>
+                        <td>Cannot support multiple inheritance directly.</td>
+                        <td>Supports multiple inheritance.</td>
+                    </tr>
+                    <tr>
+                        <td>Methods</td>
+                        <td>Can have both abstract and concrete (implemented) methods.</td>
+                        <td>Can only have abstract methods (prior to C# 8.0). Default methods are allowed in newer versions.</td>
+                    </tr>
+                    <tr>
+                        <td>Access Modifiers</td>
+                        <td>Can have access modifiers for methods and properties.</td>
+                        <td>All methods are implicitly public, no access modifiers allowed.</td>
+                    </tr>
+                    <tr>
+                        <td>Fields</td>
+                        <td>Can contain fields (instance variables).</td>
+                        <td>Cannot contain fields, only properties and methods.</td>
+                    </tr>
+                    <tr>
+                        <td>Instantiation</td>
+                        <td>Cannot be instantiated directly.</td>
+                        <td>Cannot be instantiated.</td>
+                    </tr>
+                    <tr>
+                        <td>Usage</td>
+                        <td>Used for sharing code among related classes.</td>
+                        <td>Used for defining a contract that multiple classes can implement.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Explore more about <a href="https://learn.microsoft.com/en-us/dotnet/csharp/">C# OOP concepts here</a>.</p>
+    </footer>
+</body>
+</html>

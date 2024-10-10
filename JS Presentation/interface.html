@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrangeDbContext Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        section {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #263238;
+            padding: 10px;
+            border-left: 3px solid #333;
+            overflow-x: auto;
+            font-size: 1rem;
+            color: #ffcc80;
+        }
+
+        code {
+            color: #ffcc80;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+            footer a {
+                color: #ffab00;
+                text-decoration: none;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>OrangeDbContext Interface Example</h1>
+    </header>
+
+    <main>
+        <section id="orange-db-context">
+            <h2>OrangeDbContext Interface</h2>
+            <p>The <code>IOrangeDbContext</code> interface is used to define a contract for data operations such as delete, get, get all, and update. It uses generic types to make it reusable for different entity classes:</p>
+            <pre><code>public interface IOrangeDbContext<T>
+{
+    // Method to delete an entity by its ID
+    void Delete(int id);
+
+    // Method to get an entity by its ID
+    T Get(int id);
+
+    // Method to get all entities
+    IEnumerable<T> GetAll();
+
+    // Method to update an entity
+    void Update(T entity);
+}
+
+public class OrangeDbContext : IOrangeDbContext<Orange>
+{
+    private List<Orange> _oranges = new List<Orange>();
+
+    public void Delete(int id)
+    {
+        var orange = _oranges.Find(o => o.Id == id);
+        if (orange != null) _oranges.Remove(orange);
+    }
+
+    public Orange Get(int id)
+    {
+        return _oranges.Find(o => o.Id == id);
+    }
+
+    public IEnumerable<Orange> GetAll()
+    {
+        return _oranges;
+    }
+
+    public void Update(Orange entity)
+    {
+        var orange = _oranges.Find(o => o.Id == entity.Id);
+        if (orange != null)
+        {
+            orange.Name = entity.Name;
+        }
+    }
+}
+
+public class Orange
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+OrangeDbContext context = new OrangeDbContext();
+context.Update(new Orange { Id = 1, Name = "Navel" });
+Orange orange = context.Get(1);
+Console.WriteLine(orange.Name); // Output: Navel
+</code></pre>
+            <p><b>Output:</b> The <code>IOrangeDbContext</code> interface allows operations like updating an entity, which in this example sets the name of an orange to "Navel".</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>For more examples, visit our <a href="#">documentation page</a>.</p>
+    </footer>
+</body>
+</html>
