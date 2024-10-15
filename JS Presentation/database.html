@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        section {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: box-shadow 0.3s ease;
+        }
+
+            section:hover {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #263238; /* Darker background for code block */
+            padding: 10px;
+            border-left: 3px solid #333;
+            overflow-x: auto;
+            font-size: 1rem;
+            color: #ffcc80; /* Text color for code block */
+            border-radius: 5px;
+        }
+
+        code {
+            color: #ffcc80; /* Text color inside inline code */
+        }
+
+        ul {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            list-style-type: disc;
+            transition: padding-left 0.3s ease;
+        }
+
+            ul:hover {
+                padding-left: 25px;
+            }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+            footer a {
+                color: #ffab00;
+                text-decoration: none;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
+
+        /* Interactive Elements */
+        h3 {
+            cursor: pointer;
+            position: relative;
+        }
+
+            h3::after {
+                content: "▼";
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            h3.open::after {
+                content: "▲";
+            }
+
+        .hidden {
+            display: none;
+        }
+
+        h3 + p, h3 + ul, h3 + pre {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll("h3").forEach(header => {
+                header.addEventListener("click", () => {
+                    header.classList.toggle("open");
+                    let content = header.nextElementSibling;
+                    while (content && (content.tagName === "P" || content.tagName === "UL" || content.tagName === "PRE")) {
+                        content.classList.toggle("hidden");
+                        content = content.nextElementSibling;
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Database Concepts</h1>
+    </header>
+
+    <main>
+        <section id="database-overview">
+            <h2>1. Database Concepts</h2>
+
+            <!-- What is a Database -->
+            <h3>What is a Database?</h3>
+            <p style="background-color: #e8f4f8; padding: 10px; border-left: 4px solid #00bcd4;">
+                A database is a structured collection of data that can be easily accessed, managed, and updated.
+                Databases are used to store information in an organized manner, enabling efficient retrieval and manipulation of data.
+            </p>
+
+            <!-- What is SQL -->
+            <h3>What is SQL? What can SQL do?</h3>
+            <p style="background-color: #e8f4f8; padding: 10px; border-left: 4px solid #00bcd4;">
+                SQL, or Structured Query Language, is a programming language used to interact with relational databases.
+                SQL can perform tasks like querying data, updating records, creating and modifying database structures, and managing permissions.
+            </p>
+
+            <!-- What is SQL Server -->
+            <h3>What is SQL Server?</h3>
+            <p style="background-color: #e8f4f8; padding: 10px; border-left: 4px solid #00bcd4;">
+                SQL Server is a Relational Database Management System (RDBMS) developed by Microsoft.
+                It uses SQL as its primary language for database operations, allowing users to store, retrieve, and manipulate data efficiently.
+            </p>
+
+            <!-- Microsoft SQL Server Management Studio -->
+            <h3>Microsoft SQL Server Management Studio (SSMS)</h3>
+            <p style="background-color: #e8f4f8; padding: 10px; border-left: 4px solid #00bcd4;">
+                SQL Server Management Studio (SSMS) is a software tool developed by Microsoft for managing SQL Server databases.
+                It provides a graphical interface for creating and managing databases, writing and executing SQL queries, and configuring database settings.
+            </p>
+
+            <!-- SQL Server vs SQL -->
+            <h3>SQL Server vs SQL</h3>
+            <p style="background-color: #e8f4f8; padding: 10px; border-left: 4px solid #00bcd4;">
+                SQL refers to the language used for interacting with relational databases, whereas SQL Server is a specific RDBMS developed by Microsoft that uses SQL for database operations.
+            </p>
+
+            <!-- List of Other DBMS -->
+            <h3>List of Other DBMS</h3>
+            <ul>
+                <li>MySQL</li>
+                <li>PostgreSQL</li>
+                <li>Oracle Database</li>
+                <li>SQLite</li>
+                <li>MongoDB</li>
+            </ul>
+
+            <!-- SQL Command Types -->
+            <h3>SQL Command Types - What is DDL?</h3>
+            <p>SQL commands are categorized into various types based on their functionality:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Command Type</th>
+                        <th>Description</th>
+                        <th>SQL Commands</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>DDL (Data Definition Language)</b></td>
+                        <td>Defines the structure of database objects, such as tables and schemas.</td>
+                        <td>CREATE, DROP, ALTER, RENAME</td>
+                    </tr>
+                    <tr>
+                        <td><b>DML (Data Manipulation Language)</b></td>
+                        <td>Manages data within database tables (e.g., INSERT, UPDATE, DELETE).</td>
+                        <td>INSERT, UPDATE, DELETE</td>
+                    </tr>
+                    <tr>
+                        <td><b>DCL (Data Control Language)</b></td>
+                        <td>Controls access to the database (e.g., GRANT, REVOKE).</td>
+                        <td>GRANT, REVOKE</td>
+                    </tr>
+                    <tr>
+                        <td><b>TCL (Transaction Control Language)</b></td>
+                        <td>Manages transactions within the database (e.g., COMMIT, ROLLBACK).</td>
+                        <td>COMMIT, ROLLBACK</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Types of DDL -->
+            <h3>Types of DDL</h3>
+            <ul>
+                <li><b>CREATE</b>: Creates new database objects, such as tables, views, or indexes.</li>
+                <li><b>DROP</b>: Deletes existing database objects, permanently removing them from the database.</li>
+                <li><b>ALTER</b>: Modifies the structure of existing database objects, such as adding or removing columns.</li>
+                <li><b>RENAME</b>: Renames an existing database object, such as a table or column.</li>
+            </ul>
+
+            <!-- DDL Code Examples -->
+            <h3>DDL Code Examples</h3>
+            <pre><code>-- Create a new table called 'Employees'
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    DateOfBirth DATE,
+    Position VARCHAR(50)
+);
+
+-- Alter the 'Employees' table to add a new column
+ALTER TABLE Employees
+ADD Salary DECIMAL(10, 2);
+
+-- Rename the 'Employees' table to 'Staff'
+ALTER TABLE Employees
+RENAME TO Staff;
+
+-- Drop the 'Staff' table
+DROP TABLE Staff;
+</code></pre>
+
+            <!-- Table Operations -->
+            <h3>Table Operations</h3>
+            <p>Table operations are essential for managing and organizing data effectively. Some common table operations include:</p>
+            <ul>
+                <li><b>CREATE TABLE</b>: Defines a new table in the database with specified columns and data types.</li>
+                <li><b>DROP TABLE</b>: Deletes an existing table, along with all its data, from the database.</li>
+                <li><b>RENAME TABLE</b>: Changes the name of an existing table to a new name.</li>
+                <li><b>ALTER TABLE</b>: Modifies the structure of an existing table, such as adding, deleting, or modifying columns or constraints.</li>
+            </ul>
+
+            <!-- SQL Constraints -->
+            <h3>SQL Constraints</h3>
+            <p>SQL constraints are rules applied to columns in a table to ensure the accuracy and reliability of the data. Common SQL constraints include:</p>
+            <ul>
+                <li><b>NOT NULL</b>: Ensures that a column cannot contain NULL values, requiring every row to have a value in that column.</li>
+                <li><b>UNIQUE</b>: Ensures that all values in a column are unique, preventing duplicate entries.</li>
+                <li><b>PRIMARY KEY</b>: Uniquely identifies each record in a table. A primary key column must contain unique values and cannot be NULL.</li>
+                <li><b>FOREIGN KEY</b>: Establishes a link between two tables by creating a relationship between columns, enforcing referential integrity.</li>
+            </ul>
+
+            <!-- SQL Constraints Code Example -->
+            <h3>SQL Constraints Code Example</h3>
+            <pre><code>-- Create a new table 'College'
+CREATE TABLE College (
+    CollegeID INT PRIMARY KEY,
+    CollegeName VARCHAR(100) NOT NULL
+);
+
+-- Create a new table 'Major'
+CREATE TABLE Major (
+    MajorID INT PRIMARY KEY,
+    MajorName VARCHAR(100) NOT NULL,
+    CollegeID INT,
+    CONSTRAINT fk_College FOREIGN KEY (CollegeID)
+    REFERENCES College(CollegeID)
+);
+</code></pre>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Explore more about <a href="https://learn.microsoft.com/en-us/sql/">database concepts here</a>.</p>
+    </footer>
+</body>
+</html>

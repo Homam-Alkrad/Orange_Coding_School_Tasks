@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C# Methods Explained</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        section {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #263238; /* Darker background for code block */
+            padding: 10px;
+            border-left: 3px solid #333;
+            overflow-x: auto;
+            font-size: 1rem;
+            color: #ffcc80; /* Text color for code block */
+        }
+
+        code {
+            color: #ffcc80; /* Text color inside inline code */
+        }
+
+        ul {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+            footer a {
+                color: #ffab00;
+                text-decoration: none;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>C# Methods Explained</h1>
+    </header>
+
+    <main>
+        <!-- Method Return Value Section -->
+        <section id="method-return">
+            <h2>1. Method That Returns a Value</h2>
+            <p>In C#, methods can return values using the <code>return</code> keyword. Here�s a simple example of a method that returns the sum of two integers:</p>
+            <pre><code>int AddNumbers(int a, int b) {
+    return a + b;
+}
+
+int result = AddNumbers(5, 7);
+Console.WriteLine(result);  // Output: 12
+</code></pre>
+            <p><b>Output:</b> The method returns <strong>12</strong> when passed <code>5</code> and <code>7</code>.</p>
+        </section>
+
+        <!-- Method Return Array Section -->
+        <section id="method-return-array">
+            <h2>2. Method That Returns an Array</h2>
+            <p>In C#, methods can also return arrays. Here�s an example of a method that returns an array of integers:</p>
+            <pre><code>int[] CreateArray(int size) {
+    int[] array = new int[size];
+    for (int i = 0; i < size; i++) {
+        array[i] = i + 1;
+    }
+    return array;
+}
+
+int[] numbers = CreateArray(5);
+foreach (int num in numbers) {
+    Console.WriteLine(num);  // Output: 1 2 3 4 5
+}
+</code></pre>
+            <p><b>Output:</b> The method returns an array with the values <strong>1, 2, 3, 4, 5</strong>.</p>
+        </section>
+
+        <!-- Fibonacci Sequence Section -->
+        <section id="fibonacci-sequence">
+            <h2>3. Fibonacci Sequence Using Recursion</h2>
+            <p>The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones. Here's a recursive method to calculate the nth Fibonacci number:</p>
+            <pre><code>int Fibonacci(int n) {
+    if (n <= 1)
+        return n;
+    return Fibonacci(n - 1) + Fibonacci(n - 2);
+}
+
+for (int i = 0; i < 10; i++) {
+    Console.WriteLine(Fibonacci(i));  // Output: 0 1 1 2 3 5 8 13 21 34
+}
+</code></pre>
+            <p><b>Output:</b> The method prints the first 10 numbers in the Fibonacci sequence: <strong>0, 1, 1, 2, 3, 5, 8, 13, 21, 34</strong>.</p>
+        </section>
+
+        <!-- Static Methods Section -->
+        <section id="static-methods">
+            <h2>4. Static Methods</h2>
+            <p>The <code>static</code> keyword allows a method to be called on the class itself, without requiring an instance of the class. Here's an example of a static method:</p>
+            <pre><code>class MathUtility {
+    public static int Multiply(int a, int b) {
+        return a * b;
+    }
+}
+
+int result = MathUtility.Multiply(6, 4);
+Console.WriteLine(result);  // Output: 24
+</code></pre>
+            <p><b>Output:</b> The method multiplies <strong>6</strong> and <strong>4</strong> to return <strong>24</strong>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Learn more about <a href="https://learn.microsoft.com/en-us/dotnet/csharp/">C# methods here</a>.</p>
+    </footer>
+</body>
+</html>
